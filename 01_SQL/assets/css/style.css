@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* list-style: none; */
+}
+
+body {
+  background-color: #333;
+}
+
+header nav img {
+  width: 50px;
+}
+
+.container {
+  background-color: white;
+}
+
+hr {
+  height: 7px;
+  background: linear-gradient(to right, #008DDA 0%, #41C9E2 50%, #ACE2E1 100%);
+  width: 80%;
+  margin: 0 auto;
+}
+
+main > div {
+  margin-bottom: 5rem;
+}
+
+strong {
+  color: #ce0380;
+}
+
+li {
+  padding: .2rem 1rem !important;
+}
+
+pre {
+  margin-bottom: 0 !important;
+}
+
+em {
+  color: darkslategray !important;
+}

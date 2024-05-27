@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />    
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>clauses SQL</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-sm navbar-light bg-light  border-bottom border-dark">
+        <div class="container-fluid">
+             <a class="navbar-brand" href="#"><img src="assets/img/logo.png" alt="logo"></a>
+             <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+                  aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+             </button>
+             <div class="collapse navbar-collapse" id="collapsibleNavId">
+                  <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+                       <li class="nav-item">
+                            <a class="nav-link" href="index.html" >Acronyme</a>
+                       </li>
+                       <li class="nav-item">
+                            <a class="nav-link" href="cours.html">cours</a>
+                       </li>
+                       <li class="nav-item">
+                            <a class="nav-link" href="clause_sql.html">Les clauses SQL</a>
+                       </li>
+                       <li class="nav-item">
+                            <a class="nav-link" href="pratique_sql.html">Pratique SQL</a>
+                       </li>
+                  </ul>
+             </div>
+   </div>
+   </nav>
+    </header>
+    <div class="container p-2">
+      <main>
+        <div class="row border border-dark p-5 m-2">
+          <div class="col-sm-12">
+            <h2 class="text-center">1 - Les requêtes de base</h2>
+            <hr>
+          </div>
+          <div class="col-sm-12 col-lg-10 mx-auto mt-5">
+            <ul>
+              <li>Créer une BDD : <strong><pre>  CREATE DATABASE IF NOT EXISTS nomBdd</pre></strong></li>
+              <li>Supprimer une BDD : <strong><pre>  DROP DATABASE IF EXISTS nomBdd</pre></strong></li>
+              <li>Observer la description d'une table : <strong><pre>  DESC nomTable</pre></strong></li>
+              <li>Voir les BDD dans le serveur : <strong><pre>  SHOW DATABASES</pre></strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row border border-dark p-5 m-2">
+          <div class="col-sm-12">
+            <h2 class="text-center">2 - Tables et colonnes</h2>
+            <hr>
+          </div>
+          <div class="col-sm-12 col-lg-10 mx-auto mt-5">
+            <ul>
+              <li>Créer une BDD 'entreprise' : <strong><pre>  CREATE DATABASE IF NOT EXISTS entreprise</pre></strong></li>
+              <li>Créer une table dans la BDD entreprise : <br>          
+                <strong>
+  <pre>
+  CREATE TABLE IF NOT EXISTS employes(
+    id_employe INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    prenom VARCHAR(20) NULL,
+    nom VARCHAR(20) NULL,
+    sexe ENUM ('f', 'm') NOT NULL,
+    service VARCHAR(30) NULL,
+    date_embauche DATE NULL,
+    salaire FLOAT NULL
+  )</pre>
+                </strong>
+              </li>
+              <li>Insérer des données dans une table :
+                <strong>
+                  <pre>
+  INSERT INTO employes (id_employe, prenom, nom, sexe, service, date_embauche, salaire)
+    VALUES (350, 'Marc', 'ISAAC', 'm', 'direction', '2023-12-01', 5000),
+    (380, 'Paul', 'PIERRARD', 'm', 'commercial', '2023-06-12', 2300);
+    (381, 'Imane', 'NAJJAHI', 'f', 'comptabilité', '2023-06-18', 3000),
+    (400, 'Spartak', 'SMBATYAN', 'm', 'informatique', '2022-05-30', 3200),
+    (450, 'Semir', 'SARAJLIC', 'm', 'juridique', '2023-09-18', 5000),
+    (510, 'Kaïss', 'BADI', 'm', 'contrôle', '2024-05-18', 2000),
+    (550, 'Adama', 'CISSOKO', 'm', 'commercial', '2023-09-18', 2500),
+    (600, 'Fabien', 'POTTIER', 'm', 'juridique', '2022-09-28', 5000),
+    (700, 'Gary', 'MONTEIRO', 'm', 'informatique', '2022-05-28', 3300),
+    (710, 'Axel', 'GRANSART', 'm', 'comptabilité', '2022-09-18', 5000),
+    (810, 'Cleid', 'MANIGAT', 'm', 'contrôle', '2021-06-01', 2100),
+    (910, 'Leila', 'EMBARK', 'f', 'secretariat', '2023-06-18', 2000),
+    (950, 'Maureene', 'MAROLANY', 'f', 'secretariat', '2022-10-17', 2000),
+    (980, 'Oceane', 'FOMEKOUONG', 'f', 'direction', '2020-02-08', 4000)
+                  </pre>
+                </strong>
+              </li>
+              <li>Syntaxe alternative : ne permet pas d'insérer plusieurs séries de valeurs en une seule requête, contrairement à la syntaxe de base (au dessus)
+                <strong>
+                  <pre>
+  INSERT INTO employes SET id_employe = 900, prenom = 'Sahar', nom = 'FERCHICHI',
+  sexe = 'f', service = 'direction', date_embauche = '2022-06-06', salaire = 7000
+                  </pre>
+                </strong>
+              </li>
+              <li>Effacer une table : 
+                <strong>
+                  <pre>
+  DROP TABLE nomTable
+                  </pre>
+                </strong>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row border border-dark p-5 m-2">
+          <div class="col-sm-12">
+            <h2 class="text-center">3 - SELECT et DISTINCT</h2>
+            <hr>
+          </div>
+          <div class="col-sm-12 col-lg-10 mx-auto mt-5">
+            <ul>
+              <li>Pour voir tout le contenu d'une table : 
+                <strong>(* => all)
+                  <pre>
+  SELECT * FROM employes
+                  </pre>
+                </strong>                
+              </li>
+              <li class="alert alert-success ">Sélectionner les valeurs de deux champs d'une table : SELECT colonne1, colonne2, ... FROM nomTable
+                <strong>
+                  <pre>
+  SELECT prenom, nom FROM employes
+  SELECT prenom, date_embauche, service FROM employes;
+                  </pre>
+                </strong>
+              </li>
+              <li class="alert alert-success ">Afficher les données sans doublons : SELECT DISTINCT colonne FROM nomTable
+                <strong>
+                  <pre>
+  SELECT DISTINCT service FROM employes
+                  </pre>
+                </strong>
+              </li>
+              <li>Effacer un enregistrement : DELETE FROM nomTable WHERE colonne = ''
+                <strong>
+                  <pre>
+                    DELETE FROM employes WHERE nom = 'Salimata'
+                  </pre>
+                </strong>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+    <footer>
+      <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -1,11 +1,170 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="assets/css/style.css">
   <title>Acronyme</title>
 </head>
 <body>
-  
+  <header>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light  border-bottom border-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="assets/img/logo.png" alt="logo"></a>
+        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+          <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Acronyme</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="cours.html">cours</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="clause_sql.html">Les clauses SQL</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pratique_sql.html">Pratique SQL</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="container">
+    <main>
+      <div class="row  px-5">
+        <div class="col-sm-12 pt-5 ">
+          <hr>
+          <h2 class="text-center">BDD</h2>
+          <hr>
+        </div>
+        <div class="col-sm-12 mt-5">
+          <p>
+            <strong>Les bases de données</strong> sont des magasins où l'on peut stocker des informations et permettent notamment d'effectuer différentes opérations de lecture et d'écriture
+          </p>
+          <p>
+            Elles sont efficaces pour retrouver des informations qui y sont stockées. Vous pouvez interroger une base de données, par exemple : "Combien d'utilisateurs sont inscrits sur mon site web ?" ou "Quel article dans mon blog contient tel ou tel mot-clé ?". 
+          </p>
+          <p>
+            La force des bases de données réside également dans leur possibilité de lier les différentes informations qui y sont préalablement stockées.
+          </p>
+        </div>
+      </div>
+
+      <div class="row mt-5 px-5">
+        <div class="col-sm-12">
+          <hr>
+          <h2 class="text-center">SGBD</h2>
+          <hr>
+        </div>
+        <div class="col-sm-12 mt-5">
+          <p>
+            <strong><abbr>SGBD </abbr>(Système de Gestion de Base de Données)</strong> permet d'accueillir, d'exploiter et de faire fonctionner les bases de données (moteur). Nous utiliserons MySQL. D'autres SGBD existent tels que : Oracle, Sql Server, PostgreSQL, etc... 
+          </p>
+        </div>
+      </div>
+
+      <div class="row mt-5 px-5">
+        <div class="col-sm-12">
+          <hr>
+          <h2 class="text-center">MySQL</h2>
+          <hr>
+        </div>
+        <div class="col-sm-12 mt-5">
+          <p>
+            <strong>MySQL </strong>est un <strong><abbr>SGBDR</abbr> (Système de Gestion de Base de Données Relationnelle)</strong>
+            C'est l'un des systèmes les plus populaires au monde et est très utilisé dans le monde du web.
+          </p>
+          <p>
+            Comme son nom l'indique, MySQL utilise le langage SQL pour effectuer des requêtes.
+          </p>
+          <p>
+            Toutes ces actions de gestion et manipulation passeront par une requête SQL.
+          </p>
+        </div>
+      </div>
+
+      <div class="row mt-5 px-5">
+        <div class="col-sm-12">
+          <hr>
+          <h2 class="text-center">SQL</h2>
+          <hr>
+        </div>
+        <div class="col-sm-12 mt-5">
+          <p>
+            <strong><abbr>SQL </abbr>(Structured Query Language)</strong>. C'est un langage de requête structuré. Il s'agit d'un langage informatique permettant d'intéragir avec des bases de données <strong><em>relationnelles</em></strong> 
+          </p>
+          <p>
+            Une fois que les informations ont été enregistrées, il est important de pouvoir les gérer :
+            <ul>
+              <li>ajout</li>
+              <li>modification</li>
+              <li>suppression</li>
+              <li>consultation</li>
+            </ul>
+          </p>
+        </div>
+      </div>
+
+      <div class="row mt-5 px-5">
+        <div class="col-sm-12">
+          <hr>
+          <h2 class="text-center">phpMyAdmin</h2>
+          <hr>
+        </div>
+        <div class="col-sm-12 mt-5">
+          <p>
+            <strong>phpMyAdmin</strong> (souvent abrégé PMA) est une application web de gestion pour MySQL. Il est écrit en PHP et permet de gérer les BDD dans une interface visuelle simple et intuitive.
+          </p>
+          <p>
+            Il est important de noter que phpMyAdmin n'est qu'une application. Il est tout à fait possible de gérer MySQL avec d'autres applications similaire ou en ligne de commande
+          </p>
+        </div>
+      </div>
+
+      <div class="row mt-5 px-5">
+        <div class="col-sm-12">
+          <hr>
+          <h2 class="text-center">CRUD</h2>
+          <hr>
+        </div>
+        <div class="col-sm-12 mt-5">
+          <p>
+            <strong><abbr> CRUD</abbr> (Create, Read, Update, Delete)</strong> désigne les 4 opérations de base pour le stockage et la manipulation d'informations dans une base de données.
+          </p>
+          <ul>
+            <li><strong>Create</strong> : Inserer des nouveaux enregistrements (écriture)</li>
+            <li><strong>Read</strong> : Récupérer des enregistrements (lecture)</li>
+            <li><strong>Update</strong> : Mettre à jour des enregistrements (écriture)</li>
+            <li><strong>Delete</strong> : Supprimer des enregistrements (écriture)</li>
+          </ul>
+          <p>Les opérations correspondent chacune à un type de requêtes SQL</p>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer>
+    <!--place footer here -->
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
 </body>
+
 </html>
