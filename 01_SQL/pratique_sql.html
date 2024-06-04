@@ -1,58 +1,612 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />    
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>Les pratiques SQL</title>
-  </head>
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-sm navbar-light bg-light  border-bottom border-dark">
-        <div class="container-fluid">
-             <a class="navbar-brand" href="#"><img src="assets/img/logo.png" alt="logo"></a>
-             <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-                  aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-             </button>
-             <div class="collapse navbar-collapse" id="collapsibleNavId">
-                  <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-                       <li class="nav-item">
-                            <a class="nav-link" href="index.html" >Acronyme</a>
-                       </li>
-                       <li class="nav-item">
-                            <a class="nav-link" href="cours.html">cours</a>
-                       </li>
-                       <li class="nav-item">
-                            <a class="nav-link" href="clause_sql.html">Les clauses SQL</a>
-                       </li>
-                       <li class="nav-item">
-                            <a class="nav-link" href="pratique_sql.html">Pratique SQL</a>
-                       </li>
-                  </ul>
-             </div>
-   </div>
-   </nav>
-    </header>
-    <main></main>
-    <footer>
-      <!-- place footer here -->
-    </footer>
-    <!-- Bootstrap JavaScript Libraries -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-      crossorigin="anonymous"
-    ></script>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Open+Sans&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <title>Les pratiques SQL</title>
+</head>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light  border-bottom border-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="assets/img/logo.png" alt="logo"></a>
+        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+          data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+          <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Acronyme</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="cours.html">cours</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="clause_sql.html">Les clauses SQL</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pratique_sql.html">Pratique SQL</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div id="pratique" class="container">
+    <main>
+      <div class="row p-2">
+        <div class="col-sm-12 ">
+          <hr>
+          <h2 class="text-center" id="insert">Exercices</h2>
+          <hr>
+        </div>
+        <div class="col-sm-12 py-5 mt-5 border border-dark">
+          <h3 class="text-center mb-5">BDD employes</h3>
+          <ul>
+
+            <li>Afficher le nom , le prénom et le service des employés qui ont une lettre e à la fin du prénom et
+              travailent dans le service direction et comptabilité : <br>
+              <strong>
+                <code>
+                SELECT nom, prenom, service FROM employes WHERE (service = 'direction' OR service = 'comptabilité') AND  prenom LIKE '%e';
+                <br>
+                <span class="text-black">ou</span>
+                <br>
+                SELECT nom, prenom, service FROM employes WHERE prenom LIKE '%e' AND service IN ('comptabilité', 'direction')
+              </code>
+              </strong>
+            </li>
+            <li>
+              le nom , le prénom et la date d'embauche des employés qui ont été embauché après 2022 et dont le sexe = 'f
+              '
+              : <br>
+              <strong>
+                <code>
+                SELECT nom, prenom, date_embauche FROM employes WHERE date_embauche >= '2023-01-01' AND sexe = 'f';
+                <br>
+                <span class="text-black">ou</span>
+                <br>
+                SELECT nom, prenom, date_embauche FROM employes WHERE sexe = 'f' AND date_embauche BETWEEN '2023-01-01' AND CURDATE();
+              </code>
+              </strong>
+            </li>
+            <li>
+              Afficher les différents salaire touchées dans la base entreprise : <br>
+              <strong>
+                <code>
+                SELECT DISTINCT salaire FROM employes
+                <br>
+                <span class="text-black">ou</span>
+                <br>
+                SELECT salaire FROM employes GROUP BY salaire;
+              </code>
+              </strong>
+            </li>
+            <li>
+              Afficher les noms des employés qui ont un salaire entre 2300 et 4000 : <br>
+              <strong>
+                <code>
+                SELECT nom, prenom, salaire FROM employes WHERE salaire >= 2300 AND salaire &lt;= 4000
+                <br>
+                <span class="text-black">ou</span>
+                <br>
+                SELECT nom, prenom, salaire FROM employes WHERE salaire BETWEEN 2300 AND 4000
+                <br>                
+              </code>
+              </strong>
+            </li>
+            <li>
+              Afficher le nombre d'employés par salaire : <br>
+              <strong>
+                <code>
+                SELECT salaire, COUNT(*) AS nbrEmploye FROM employes GROUP BY salaire;  
+              </code>
+              </strong>
+            </li>
+            <li>Afficher la profession de l'employé 981 : <br>
+              <strong>
+                <code>
+                SELECT id_employe, prenom, service FROM employes WHERE id_employe = 981;
+              </code>
+              </strong>
+            </li>
+            <li>Afficher la date d'embauche de Paul : <br>
+              <strong>
+                <code>
+                  SELECT prenom, date_embauche FROM employes WHERE prenom = 'paul';
+                </code>
+              </strong>
+            </li>
+            <li>Afficher le nombre de commerciaux : <br>
+              <strong>
+                <code>
+                  SELECT COUNT(service) AS nbr_commerciaux FROM employes WHERE service = 'commercial';
+                </code>
+              </strong>
+            </li>
+            <li>Afficher le coût des commerciaux sur une année : <br>
+              <strong>
+                <code>
+                  SELECT SUM(salaire*12) AS salaire_commerciaux FROM employes WHERE service = 'commercial';
+                </code>
+              </strong>
+            </li>
+            <li>Afficher le salaire moyen par service : <br>
+              <strong>
+                <code>
+                  SELECT service, AVG(salaire) AS salaire_moyen FROM employes GROUP BY service;
+                </code>
+              </strong>
+            </li>
+            <li>Afficher le nombre de recrutement sur l'année 2022 : <br>
+              <strong>
+                <code>
+                  SELECT COUNT(date_embauche) FROM employes WHERE date_embauche BETWEEN '2022-01-01' AND '2022-12-31'; 
+                  <br>
+                  <span class="text-black">ou</span>
+                  <br>
+                  SELECT COUNT(*) AS nbr_recrutement FROM employes WHERE date_embauche BETWEEN '2022-01-01' AND '2022-12-31';
+                  <br>
+                  <span class="text-black">ou</span>
+                  <br>
+                  SELECT COUNT(date_embauche) FROM employes WHERE date_embauche >= '2022-01-01' AND date_embauche &lt;= '2022-12-31';
+                  <br>
+                  <span class="text-black">ou</span>
+                  <br>
+                  SELECT COUNT(*) AS nbr_recrutement FROM employes WHERE date_embauche LIKE '2022%';
+                </code>
+              </strong>
+            </li>
+            <li>Augmenter le salaire pour chaque employé de 100€ : <br>
+              <strong>
+                <code>
+                  UPDATE employes SET salaire = salaire + 100;
+                </code>
+              </strong>
+            </li>
+            <li>Afficher le nombre de service : <br>
+              <strong>
+                <code>
+                  SELECT COUNT(DISTINCT service) AS nbr_service FROM employes;
+                </code>
+              </strong>
+            </li>
+            <li>
+              Afficher 10 employés à partir de l'enregistrement 10 : <br>
+              <strong>
+                <code>
+                  SELECT * FROM employes LIMIT 10,10;
+                </code>
+              </strong>
+            </li>
+            <li>
+              Afficher les salaires qui sont touchées par plus qu'un employé : <br>
+              <strong>
+                <code>
+                  SELECT salaire, COUNT(*) FROM employes GROUP BY salaire HAVING COUNT(*) > 1;
+                </code>
+              </strong>
+            </li>
+            <li>
+              Afficher l'employé ayant été embauché en dernier : <br>
+              <strong>
+                <code>
+                  SELECT * FROM employes ORDER BY date_embauche DESC LIMIT 1;
+                </code>
+              </strong>
+            </li>
+            <li>
+              Afficher les informations de l'employé du service commercial gagnant le salaire le plus élevé : <br>
+              <strong>
+                <code>
+                  SELECT * FROM employes 
+                </code>
+              </strong>
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-12 py-5 mt-5 border border-dark">
+          <h3 class="text-center mb-5">BDD haribos</h3>
+          <ul>
+            <li>lister toutes les BDD de PHPMyAdmin <br>
+
+            </li>
+            <li>
+              Créer une base de données SQL nommée HARIBO <br>
+
+            </li>
+            <li>
+              <div class="row">
+                <p class="col-sm-12"> Créer les tables stagiaires, bonbons et mange_bonbon </p>
+                <div class="col-sm-4">
+
+                </div>
+                <div class="col-sm-4">
+
+                </div>
+                <div class="col-sm-4">
+
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="row">
+                <p>Insérer dans ces tables les informations suivantes:</p>
+                <div class="col-sm-4">
+
+                </div>
+                <div class="col-sm-4">
+
+                </div>
+                <div class="col-sm-4">
+
+                </div>
+              </div>
+            </li>
+            <li>
+              Lister les tables de la BDD *haribo* <br>
+
+            </li>
+            <li>
+              voir les paramètres de la table *bonbon* <br>
+
+            </li>
+            <li>
+              Sélectionner tous les champs de tous les enregistrements de la table *stagiaire* <br>
+
+
+            </li>
+            <li>
+              Rajouter un nouveau stagiaire *Patriiiick* en forçant la numérotation de l'id <br>
+
+            </li>
+            <li>
+              Rajouter un nouveau stagiaire *Mila* SANS forcer la numérotation de l'id <br>
+
+
+            </li>
+            <li>
+              Changer le prénom du stagiaire qui a l'id 100 de *Patriiiick* à *Patrick* <br>
+
+
+            </li>
+            <li>
+              Rajouter dans la table manger que Patrick a mangé 5 Tagada purple le 15 septembre <br>
+
+            </li>
+            <li>
+              Sélectionner tous les noms des bonbons <br>
+
+            </li>
+            <li>
+              Sélectionner tous les noms des bonbons en enlevant les doublons <br>
+
+            </li>
+            <li>
+              Récupérer les couleurs des yeux des stagiaires (Sélectionner plusieurs champs dans une table) <br>
+
+            </li>
+            <li>
+              Dédoublonner un résultat sur plusieurs champs <br>
+
+            </li>
+            <li>
+              Sélectionner le stagiaire qui a l'id 5 <br>
+
+            </li>
+            <li>
+              Sélectionner tous les stagiaires qui ont les yeux marrons <br>
+
+            </li>
+
+            <li>
+              Sélectionner tous les stagiaires dont l'id est plus grand que 9
+
+            </li>
+            <li>
+              Sélectionner tous les stagiaires SAUF celui dont l'id est 3 <br>
+
+            </li>
+            <li>
+              Sélectionner tous les stagiaires qui ont un id inférieur ou égal à 10
+
+            </li>
+            <li>
+              Sélectionner tous les stagiaires dont l'id est compris entre 7 et 11
+
+            </li>
+            <li>
+              Sélectionner les stagiaires dont le prénom commence par un *S* <br>
+
+            </li>
+            <li>
+              Trier les stagiaires femmes par id_stagiaire décroissant <br>
+
+            </li>
+            <li>
+              Trier les stagiaires hommes par prénom dans l'ordre alphabétique <br>
+
+            </li>
+            <li>
+              Trier les stagiaires en affichant les femmes en premier et en classant les couleurs des yeux dans l'ordre
+              alphabétique <br>
+              <!-- l'ordre des membres de l'enumeration depend de l'ordre dans lequel on les a insérer dans les champs -->
+
+            </li>
+            <li>
+              Limiter l'affichage d'une requête de sélection de tous les stagiaires aux 3 premires résultats <br>
+            </li>
+            <li>
+              Limiter l'affichage d'une requête de sélection de tous les stagiaires à partir du 3ème résultat et des 5
+              suivants <br>
+
+            </li>
+            <li>
+              Afficher les 4 premiers stagiaires qui ont les yeux marron <br>
+
+            </li>
+            <li> Pareil mais en triant les prénoms dans l'ordre alphabétique <br>
+
+            </li>
+            <li>
+              Compter le nombre de stagiaires <br>
+
+            </li>
+            <li>
+              Compter le nombre de stagiaires hommes mais en changeant le nom de la colonne de résultat par
+              *nb_stagiaires_H* <br>
+
+
+            </li>
+            <li>
+              Compter le nombre de couleurs des yeux différentes <br>
+
+
+            </li>
+
+            <li>
+              Afficher le prénom et les yeux du stagiaire qui a l'id_stagiaire le plus petit <br>
+
+            </li>
+            <li>
+              Afficher les stagiaires qui ont les yeux bleu et vert <br>
+
+            </li>
+            <li>
+              A l'inverse maintenant, afficher les stagiaires qui n'ont pas les yeux bleu ni vert <br>
+
+            </li>
+            <li>
+              Afficher combien de bonbons ont été consommés au total <br>
+
+
+            </li>
+            <li>
+              Afficher les saveurs des bonbons (sans doublons) <br>
+
+            </li>
+            <li> Afficher le prénom et les yeux du stagiaire qui a l'id le plus grand /!\ c'est une requête imbriquée
+              qu'il faut faire (requête sur le résultat d'une autre requête) : <br>
+
+            </li>
+            <li>récupérer tous les stagiaires qui ont mangé des bonbons <br>
+
+            </li>
+            <li>
+              Récupérez les informations sur les stagiaires qui ont mangé plus d'un seul bonbon <br>
+
+            </li>
+            <li>
+              Afficher le prénom du stagiaire, le nom du bonbon, la date de consommation pour tous les stagiaires qui
+              ont
+              mangé au moins une fois <br>
+
+            </li>
+            <li>
+              Afficher le nombre de consommation de *Tagada* <br>
+
+
+            </li>
+            <li>
+              Afficher cette fois le total de "tagada" consommées <br>
+
+            </li>
+
+            <li>
+              Afficher le prénom du stagiaire qui a mangé le plus de bonbons <br>
+
+
+            </li>
+
+
+          </ul>
+        </div>
+        <div class="col-sm-12 py-5 mt-5 border border-dark">
+          <h3 class="text-center mb-5">BDD immobilier</h3>
+          <ul>
+            <li>Création de la BDD "immobilier" : <br>
+
+            </li>
+            <li>
+              <div class="row">
+                <p class="col-sm-12"> Créer les tables : agence, demande, logement, logement_agence, logement_personne
+                  et
+                  personne </p>
+                <div class="col-sm-4">
+
+                </div>
+                <div class="col-sm-4">
+
+                </div>
+                <div class="col-sm-4">
+
+                </div>
+                <div class="col-sm-4">
+
+                  </code>
+                </div>
+                <div class="col-sm-4">
+
+                </div>
+                <div class="col-sm-4">
+
+                </div>
+              </div>
+            </li>
+            <li class="mt-5">
+              <div class="row">
+                <p class="col-sm-12"> Création des clefs étrangères </p>
+                <div class="col-sm-4">
+
+                </div>
+                <div class="col-sm-4">
+
+                </div>
+                <div class="col-sm-4">
+
+                </div>
+              </div>
+            </li>
+            <li>
+              Affichez les noms des agences : <br>
+
+
+            </li>
+            <li>
+              Affichez le premier enregistrement de la table logement : <br>
+
+            </li>
+            <li>
+              Affichez le nombre de logements (Alias : Nombre_de_logements) :<br>
+
+            </li>
+            <li>
+              Affichez les logements à vendre à moins de 150 000 € dans l'ordre croissant des prix :<br>
+
+            </li>
+            <li>
+              Afficher le nombre de logements à la location (alias : 'nombre') :<br>
+
+            </li>
+            <li>
+              Afficher les villes différentes recherchées par les personnes demandeusent d'un logement :<br>
+
+            </li>
+            <li>
+              Affichez le nombre de biens à vendre par ville :
+
+
+            </li>
+            <li>
+              Quels sont les id des logements destinés à la location ? :<br>
+
+            </li>
+            <li>
+              Quels sont les id des logements entre 20 et 30m² ? :<br>
+
+            </li>
+            <li>
+              Quel est le prix vendeur du logement le moins cher a vendre ? :<br>
+
+            </li>
+            <li>
+              Dans quelle ville se trouve les maisons à vendre ? :<br>
+
+            </li>
+            <li>
+              L'agence Orpi souhaite diminuer les frais qu'elle applique sur le logement ayant l'id « 5246». Passer les
+              frais de ce logement de 800 à 730€
+            </li>
+            <li>
+              Quels sont les logements gérés par l'agence « laforet » :
+
+            </li>
+            <li>
+              Affichez le nombre de propriétaires dans la ville de Paris (Alias : Nombre propriétaire parisien) :<br>
+
+            </li>
+            <li>
+              Afficher les infos des trois premières personnes souhaitant acheter un logement :<br>
+
+            </li>
+            <li>
+              Affichez les noms des agences qui vendent le logement ayant la référence « 5770 » :<br>
+
+            </li>
+            <li>
+              Affichez les prénoms des personnes souhaitant accéder à un logement sur la ville de Lyon :<br>
+
+            </li>
+            <li>
+              Affichez les prénoms des personnes souhaitant accéder à un logement en location sur la ville de Paris
+              :<br>
+
+            </li>
+            <li>
+              Affichez les prénoms des personnes souhaitant acheter un logement de la plus grande à la plus petite
+              superficie :<br>
+
+            </li>
+            <li>
+              Quel sont les prix finaux proposés par les agences pour la maison à la vente ayant la référence « 5091 » ?
+              (Alias : prix frais d'agence inclus) :<br>
+
+
+            </li>
+            <li>
+              Indiquez le prix total (prix et frais d'agence) pour le logement ayant la référence « 5873 »<br>
+
+            </li>
+            <li>
+              Si l'ensemble des logements étaient vendus ou loués demain, quel serait le bénéfice généré grâce aux frais
+              d'agence et pour chaque agence (Alias : benefice, classement : par ordre croissant des gains) :
+
+            </li>
+            <li>
+              Affichez les id des biens en location, les prix, suivis des frais d'agence (classement : dans l'ordre
+              croissant des prix) :<br>
+
+
+            </li>
+            <li>
+              Quel est le nom de l'agence proposant le logement le moins cher à louer ? :<br>
+
+            </li>
+            <li>
+              Affichez le prénom et la ville où se trouve le logement de chaque propriétaire :<br>
+
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+  </div> <!-- fin du container fluid -->
+  </main>
+  </div>
+  <footer>
+    <!-- place footer here -->
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>

@@ -36,6 +36,10 @@ li {
   padding: .2rem 1rem !important;
 }
 
+#pratique li, #clause li {
+  margin: 2.5rem 0;
+}
+
 pre {
   margin-bottom: 0 !important;
 }
@@ -44,3 +48,16 @@ em {
   color: darkslategray !important;
 }
 
+h4 {
+  color: #a409cb;
+}
+
+h6 {
+  color: cornflowerblue;
+  margin-bottom: 20px !important;
+  font-size: 1.1rem;
+}
+
+/* img:not(img[src="assets/img/logo.png"]) {
+  box-shadow: 0px 0px 13px 16px rgba(0, 0, 0, 0.1);
+} */

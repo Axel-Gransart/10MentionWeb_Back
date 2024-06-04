@@ -1,4 +1,7 @@
 {
   "liveServer.settings.port": 5501,
+  "editor.inlineSuggest.enabled": false,
+  "files.autoSave": "onFocusChange",
+  "editor.tabSize": 2,
   "editor.hover.enabled": false
 }
