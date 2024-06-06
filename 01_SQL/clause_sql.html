@@ -830,18 +830,14 @@
           <div class="col-sm-12 col-md-6">
             <ul>
               <li>
-                <h6>Création des clefs étrangères</h6>
-                <ul>
-                  <li>
-                    Dans la table emprunt, id_livre sera un champs clé étrangère en référence au champ id_livre de la table livres <br>
-                    <strong>
-                      <code>
-                        -> ALTER TABLE emprunt ADD FOREIGN KEY (id_livre) REFERENCES bibliotheque.livres(id_livre); <br>
-                        -> ALTER TABLE emprunt ADD FOREIGN KEY (id_abonne) REFERENCES bibliotheque.abonnes(id_abonne);                      
-                      </code>
-                    </strong>
-                  </li>
-                </ul>              
+                <h6>Création des clefs étrangères</h6>              
+                Dans la table emprunt, id_livre sera un champs clé étrangère en référence au champ id_livre de la table livres <br>
+                <strong>
+                  <code>
+                    -> ALTER TABLE emprunt ADD FOREIGN KEY (id_livre) REFERENCES bibliotheque.livres(id_livre); <br> <br>
+                    -> ALTER TABLE emprunt ADD FOREIGN KEY (id_abonne) REFERENCES bibliotheque.abonnes(id_abonne);                      
+                  </code>
+                </strong>
               </li>
             </ul>
           </div>
@@ -911,14 +907,105 @@
                     </code>
                   </strong>
                 </li>
-                <li class="alert alert-danger">Pour trouver un résultat qui est égal à NULL, on utilise le terme <em>IS</em> <br>
+                <li class="alert alert-danger">Pour trouver un résultat qui est égal à NULL, on utilise le terme <em class="fw-bold">IS</em> <br>
                   <code>SELECT id_livre FROM emprunt WHERE date_rendu = NULL</code> ne retourne aucun résultat
                 </li>
-                <li>On cherche les titres des livres qui n'ont pas été rendu : <br>
+                <li>On cherche les <em class="fw-bold">titres</em> des livres qui n'ont <em class="fw-bold">pas été rendu</em> : <br>
                   <strong>
                     <code>
-                      SELECT titre FROM livres WHERE id_livre IN (SELECT id_livre FROM emprunt WHERE date_rendu IS NULL)
+                      -> SELECT titre FROM livres WHERE id_livre IN (SELECT id_livre FROM emprunt WHERE date_rendu IS NULL);
                     </code>
+                  </strong>
+                </li>
+                <li>On cherche les <em class="fw-bold">id</em> des livres que <em class="fw-bold">Patrick</em> a emprunté :
+                 <ul>
+                  <li>
+                    Si je connais l'id de Patrick, je peux executer : <br>
+                    <strong>
+                      <code>
+                        -> SELECT id_livre FROM emprunt WHERE id_abonne = 3;
+                      </code>
+                    </strong>
+                  </li>
+                  <li>
+                    Si je ne connais pas l'id de Patrick, je peux executer : <br>
+                    <strong>
+                      <code>
+                        -> SELECT id_livre FROM emprunt WHERE id_abonne IN (SELECT id_abonne FROM abonnes WHERE prenom = 'Patrick');
+                      </code>
+                    </strong>
+                  </li>
+                 </ul>
+                </li>
+                <li>On cherche les <em class="fw-bold">titres</em> des livres que <em class="fw-bold">Patrick</em> a emprunté : <br>
+                  <strong>
+                    <code>
+                      -> SELECT titre, id_livre FROM livres WHERE id_livre IN (SELECT id_livre FROM emprunt WHERE id_abonne IN (SELECT id_abonne FROM abonnes WHERE prenom = 'Patrick'))
+                    </code>
+                  </strong>                  
+                </li>
+                <li>
+                  On cherche maintenant le <em class="fw-bold">prénom</em> des abonnés ayant emprunté un livre le <em class="fw-bold">2014-12-19</em> : <br>
+                  <strong>
+                    <code>
+                      -> SELECT prenom, id_abonne FROM abonnes WHERE id_abonne IN (SELECT id_abonne FROM emprunt WHERE date_sortie = '2014-12-19');
+                    </code>
+                  </strong>
+                </li>
+                <li>Afficher la liste des <em class="fw-bold">abonnés</em> ayant emprunté un livre de <em class="fw-bold">Daudet</em> : <br>
+                  <strong>
+                    <code>
+                      -> SELECT prenom, id_abonne FROM abonnes WHERE id_abonne IN (SELECT id_abonne FROM emprunt WHERE id_livre IN (SELECT id_livre FROM livres WHERE auteur LIKE '%DAUDET%'));
+                    </code>
+                  </strong>
+                </li>
+                <li>Afficher les <em class="fw-bold">titres</em> des livres que <em class="fw-bold">Benoit</em> a emprunté à la bibliothèque : <br>
+                  <strong>
+                    <code>
+                      -> SELECT titre, id_livre FROM livres WHERE id_livre IN (SELECT id_livre FROM emprunt WHERE id_abonne IN (SELECT id_abonne FROM abonnes WHERE prenom = 'Benoit'));
+                    </code>
+                  </strong>
+                </li>
+                <li>Afficher les titres des livres que Benoit n'a pas emprunté : <br>
+                  <strong>
+                    <code>
+                      -> SELECT titre, id_livre FROM livres WHERE id_livre NOT IN (SELECT id_livre FROM emprunt WHERE id_abonne IN (SELECT id_abonne FROM abonnes WHERE prenom = 'Benoit'))
+                  </code>
+                  </strong>
+                </li>
+                <li>Afficher les titres des livres que Benoit n'a pas encore rendu à la bibliothèque : <br>
+                  <strong>
+                    <code>
+                      -> SELECT titre, id_livre FROM livres WHERE id_livre IN (SELECT id_livre FROM emprunt WHERE date_rendu IS NULL AND id_abonne IN (SELECT id_abonne FROM abonnes WHERE prenom = 'Benoit'))
+                  </code>
+                  </strong>
+                </li>
+                <li>Combien de livres Guillaume a emprunté à la bibliothèque ? <br>
+                  <strong>
+                    <code>
+                      -> SELECT COUNT(id_livre) AS nombreEmpruntGuillaume FROM emprunt WHERE id_abonne IN (SELECT id_abonne FROM abonnes WHERE prenom = 'Guillaume')
+                  </code>
+                  </strong>
+                </li>
+                <li>Quel est le livre qui n'a été emprunté par personne <br>
+                  <strong>
+                    <code>
+                      -> SELECT titre, id_livre FROM livres WHERE id_livre NOT IN (SELECT id_livre FROM emprunt )
+                  </code>
+                  </strong>
+                </li>
+                <li>Combien de personnes ont emprunté le livre Une vie ? <br>
+                  <strong>
+                    <code>
+                      -> SELECT COUNT(id_abonne) AS nombre_emprunteur FROM emprunt WHERE id_livre IN (SELECT id_livre FROM livres WHERE titre LIKE '%Une vie%')
+                  </code>
+                  </strong>
+                </li>
+                <li>Quel livre a été emprunté le dernier ? <br>
+                  <strong>
+                    <code>
+                      -> SELECT titre, id_livre FROM livres WHERE id_livre IN (SELECT id_livre FROM emprunt ORDER BY date_sortie ASC LIMIT 1)
+                  </code>
                   </strong>
                 </li>
               </ul>
