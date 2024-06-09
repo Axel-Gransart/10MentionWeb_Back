@@ -966,45 +966,45 @@
                     </code>
                   </strong>
                 </li>
-                <li>Afficher les titres des livres que Benoit n'a pas emprunté : <br>
+                <li>Afficher les <em class="fw-bold">titres</em> des livres que <em class="fw-bold">Benoit</em> n'a <em class="fw-bold">pas emprunté</em> : <br>
                   <strong>
                     <code>
                       -> SELECT titre, id_livre FROM livres WHERE id_livre NOT IN (SELECT id_livre FROM emprunt WHERE id_abonne IN (SELECT id_abonne FROM abonnes WHERE prenom = 'Benoit'))
                   </code>
                   </strong>
                 </li>
-                <li>Afficher les titres des livres que Benoit n'a pas encore rendu à la bibliothèque : <br>
+                <li>Afficher les <em class="fw-bold">titres</em> des livres que <em class="fw-bold">Benoit</em> n'a <em class="fw-bold">pas encore rendu</em> à la bibliothèque : <br>
                   <strong>
                     <code>
                       -> SELECT titre, id_livre FROM livres WHERE id_livre IN (SELECT id_livre FROM emprunt WHERE date_rendu IS NULL AND id_abonne IN (SELECT id_abonne FROM abonnes WHERE prenom = 'Benoit'))
                   </code>
                   </strong>
                 </li>
-                <li>Combien de livres Guillaume a emprunté à la bibliothèque ? <br>
+                <li><em class="fw-bold">Combien</em> de livres <em class="fw-bold">Guillaume</em> a <em class="fw-bold">emprunté</em> à la bibliothèque ? <br>
                   <strong>
                     <code>
                       -> SELECT COUNT(id_livre) AS nombreEmpruntGuillaume FROM emprunt WHERE id_abonne IN (SELECT id_abonne FROM abonnes WHERE prenom = 'Guillaume')
                   </code>
                   </strong>
                 </li>
-                <li>Quel est le livre qui n'a été emprunté par personne <br>
+                <li>Quel est le <em class="fw-bold">livre</em> qui n'a été <em class="fw-bold">emprunté</em> par <em class="fw-bold">personne</em> <br>
                   <strong>
                     <code>
-                      -> SELECT titre, id_livre FROM livres WHERE id_livre NOT IN (SELECT id_livre FROM emprunt )
+                      -> SELECT titre, id_livre FROM livres WHERE id_livre NOT IN (SELECT id_livre FROM emprunt)
                   </code>
                   </strong>
                 </li>
-                <li>Combien de personnes ont emprunté le livre Une vie ? <br>
+                <li><em class="fw-bold">Combien</em> de personnes ont <em class="fw-bold">emprunté</em> le livre <em class="fw-bold">Une vie</em> ? <br>
                   <strong>
                     <code>
-                      -> SELECT COUNT(id_abonne) AS nombre_emprunteur FROM emprunt WHERE id_livre IN (SELECT id_livre FROM livres WHERE titre LIKE '%Une vie%')
+                      -> SELECT COUNT(id_abonne) AS nombre_emprunteur FROM emprunt WHERE id_livre IN (SELECT id_livre FROM livres WHERE titre LIKE '%Une vie%');
                   </code>
                   </strong>
                 </li>
-                <li>Quel livre a été emprunté le dernier ? <br>
+                <li>Quel <em class="fw-bold">livre</em> a été <em class="fw-bold">emprunté</em> le <em class="fw-bold">dernier</em> ? <br>
                   <strong>
                     <code>
-                      -> SELECT titre, id_livre FROM livres WHERE id_livre IN (SELECT id_livre FROM emprunt ORDER BY date_sortie ASC LIMIT 1)
+                      -> SELECT titre, id_livre FROM livres WHERE id_livre IN (SELECT id_livre FROM emprunt ORDER BY date_sortie DESC) LIMIT 1;
                   </code>
                   </strong>
                 </li>
