@@ -564,7 +564,7 @@
               Afficher le prénom et les yeux du stagiaire qui a l'id_stagiaire le plus petit <br>
               <strong>
                 <code>
-                  -> SELECT prenom, yeux FROM stagiaires WHERE id_stagiaire
+                  -> SELECT prenom, yeux, id_stagiaire FROM stagiaires ORDER BY id_stagiaire ASC LIMIT 1;
                 </code>
               </strong>
             </li>
@@ -572,7 +572,7 @@
               Afficher les stagiaires qui ont les yeux bleu et vert <br>
               <strong>
                 <code>
-                  -> 
+                  -> SELECT * FROM stagiaires WHERE yeux = 'bleu' OR yeux = 'vert';
                 </code>
               </strong>
             </li>
@@ -580,7 +580,7 @@
               A l'inverse maintenant, afficher les stagiaires qui n'ont pas les yeux bleu ni vert <br>
               <strong>
                 <code>
-                  -> 
+                  -> SELECT * FROM stagiaires WHERE yeux NOT IN ('bleu', 'vert');
                 </code>
               </strong>
             </li>
@@ -588,31 +588,30 @@
               Afficher combien de bonbons ont été consommés au total <br>
               <strong>
                 <code>
-                  -> 
+                  -> SELECT sum(quantite) AS nombre_bonbons_mange FROM mange_bonbon;
                 </code>
               </strong>
-
             </li>
             <li>
               Afficher les saveurs des bonbons (sans doublons) <br>
               <strong>
                 <code>
-                  -> 
+                  -> SELECT saveur FROM bonbons GROUP BY saveur;
                 </code>
               </strong>
             </li>
-            <li> Afficher le prénom et les yeux du stagiaire qui a l'id le plus grand /!\ c'est une requête imbriquée
+            <li> Afficher le prénom et les yeux du stagiaire qui a l'id le plus grand : <br>
+              <strong>
+                <code>
+                  -> SELECT prenom, yeux, id_stagiaire FROM stagiaires ORDER BY id_stagiaire DESC LIMIT 1;
+                </code>
+              </strong>
+            </li>
+            <li>récupérer tous les stagiaires qui ont mangé des bonbons /!\ c'est une requête imbriquée
               qu'il faut faire (requête sur le résultat d'une autre requête) : <br>
               <strong>
                 <code>
-                  -> 
-                </code>
-              </strong>
-            </li>
-            <li>récupérer tous les stagiaires qui ont mangé des bonbons <br>
-              <strong>
-                <code>
-                  -> 
+                  -> SELECT * FROM Stagiaires WHERE id_stagiaire IN (SELECT id_stagiaire FROM mange_bonbon);
                 </code>
               </strong>
             </li>
@@ -620,25 +619,26 @@
               Récupérez les informations sur les stagiaires qui ont mangé plus d'un seul bonbon <br>
               <strong>
                 <code>
-                  -> 
+                  -> SELECT * FROM Stagiaires WHERE id_stagiaire IN (SELECT id_stagiaire FROM mange_bonbon WHERE quantite > 1);
                 </code>
               </strong>
             </li>
             <li>
               Afficher le prénom du stagiaire, le nom du bonbon, la date de consommation pour tous les stagiaires qui
-              ont
-              mangé au moins une fois <br>
+              ont mangé au moins une fois : <br>
               <strong>
                 <code>
-                  -> 
+                  -> SELECT prenom FROM stagiaires WHERE id_stagiaire IN (SELECT id_stagiaire FROM mange_bonbon);
+                  -> SELECT nom FROM bonbons WHERE id_bonbon IN (SELECT id_bonbon FROM mange_bonbon);
+                  -> SELECT date_manger FROM mange_bonbon;
                 </code>
               </strong>
             </li>
             <li>
-              Afficher le nombre de consommation de *Tagada* <br>
+              Afficher le nombre de fois où les *tagada* ont été mangés : <br>
               <strong>
                 <code>
-                  -> 
+                  -> SELECT COUNT(*) FROM mange_bonbon WHERE id_bonbon IN (SELECT id_bonbon FROM bonbons WHERE nom = 'tagada');
                 </code>
               </strong>
 
@@ -647,7 +647,7 @@
               Afficher cette fois le total de "tagada" consommées <br>
               <strong>
                 <code>
-                  -> 
+                  -> SELECT SUM(quantite) FROM mange_bonbon WHERE id_bonbon IN (SELECT id_bonbon FROM bonbons WHERE nom = 'tagada');
                 </code>
               </strong>
             </li>
@@ -656,13 +656,10 @@
               Afficher le prénom du stagiaire qui a mangé le plus de bonbons <br>
               <strong>
                 <code>
-                  -> 
+                  -> SELECT prenom FROM stagiaires WHERE id_stagiaire IN (SELECT id_stagiaire FROM mange_bonbon ORDER BY quantite DESC) LIMIT 1;
                 </code>
               </strong>
-
             </li>
-
-
           </ul>
         </div>
         <div class="col-sm-12 py-5 mt-5 border border-dark">
