@@ -333,8 +333,12 @@
               </div>
             </li>
             <li>
-              Lister les tables de la BDD *haribo* <br>
-
+              Lister les tables de la BDD *haribo* : <br>
+              <strong>
+                <code>
+                  -> SHOW TABLES FROM haribo
+                </code>
+            </strong>
             </li>
             <li>
               voir les paramètres de la table *bonbon* <br>
@@ -351,7 +355,6 @@
                   -> SELECT * FROM stagiaire;
                 </code>
               </strong>
-
             </li>
             <li>
               Rajouter un nouveau stagiaire *Patriiiick* en forçant la numérotation de l'id <br>
@@ -625,14 +628,12 @@
             </li>
             <li>
               Afficher le prénom du stagiaire, le nom du bonbon, la date de consommation pour tous les stagiaires qui
-              ont mangé au moins une fois : <br>
+              ont mangé au moins une fois : <em class="fw-bold">(requête de jointure)</em> <br>
               <strong>
                 <code>
-                  -> SELECT prenom FROM stagiaires WHERE id_stagiaire IN (SELECT id_stagiaire FROM mange_bonbon);
-                  -> SELECT nom FROM bonbons WHERE id_bonbon IN (SELECT id_bonbon FROM mange_bonbon);
-                  -> SELECT date_manger FROM mange_bonbon;
+                  -> SELECT stagiaires.prenom, bonbons.nom, mange_bonbon.date_manger, mange_bonbon.quantite FROM stagiaires, bonbons, mange_bonbon WHERE mange_bonbon.quantite >= 1 AND stagiaires.id_stagiaire = mange_bonbon.id_stagiaire AND bonbons.id_bonbon = mange_bonbon.id_bonbon
                 </code>
-              </strong>
+            </strong>
             </li>
             <li>
               Afficher le nombre de fois où les *tagada* ont été mangés : <br>
@@ -641,7 +642,6 @@
                   -> SELECT COUNT(*) FROM mange_bonbon WHERE id_bonbon IN (SELECT id_bonbon FROM bonbons WHERE nom = 'tagada');
                 </code>
               </strong>
-
             </li>
             <li>
               Afficher cette fois le total de "tagada" consommées <br>
@@ -651,14 +651,21 @@
                 </code>
               </strong>
             </li>
-
             <li>
               Afficher le prénom du stagiaire qui a mangé le plus de bonbons <br>
               <strong>
                 <code>
-                  -> SELECT prenom FROM stagiaires WHERE id_stagiaire IN (SELECT id_stagiaire FROM mange_bonbon ORDER BY quantite DESC) LIMIT 1;
+                  -> SELECT * FROM mange_bonbon ORDER BY quantite 1,1
                 </code>
-              </strong>
+            </strong>
+            <br>
+            ou
+            <br>
+            <strong>
+                <code>
+                  -> SELECT stagiaires.prenom, mange_bonbon.quantite FROM stagiaires, mange_bonbon, bonbons WHERE mange_bonbon.quantite = (SELECT MAX(mange_bonbon.quantite) FROM mange_bonbon) AND stagiaires.id_stagiaire = mange_bonbon.id_stagiaire
+                </code>
+            </strong> 
             </li>
           </ul>
         </div>
