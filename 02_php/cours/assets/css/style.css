@@ -16,9 +16,13 @@ table {
     padding: 20px;
     background-color: #c7c8cc;
     border-collapse: collapse; 
-  }
-  
-  th, td {
+}
+
+th, td {
     border: 1px solid #0d6efd;
     padding: 5px;
-  }
+}
+
+pre {
+    background-color: #D2F4EA !important;
+}
