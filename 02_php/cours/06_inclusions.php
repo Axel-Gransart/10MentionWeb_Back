@@ -4,7 +4,7 @@ include "inc/header.inc.php";
 <header class="p-5 m-4 bg-light rounded-3 border ">
   <section class="container-fluid py-5">
     <?php
-      echo "<h1>Les importations de fichiers avec require() et include()</h1>"; // une istruction d'affichage en PHP
+      echo "<h1>Les importations de fichiers avec require() et include()</h1>"; // une instruction d'affichage en PHP
       echo " <p class=\"col-md-8 fs-4\">La grande majorité des sites web dynamiques ou des applications ont besoin de réutiliser des parties de code identique à plusieurs endroits d'une même page, ou bien dans plusieurs pages différentes. C'est le cas par exemple des librairies de fonctions utilisateurs ou bien des fichiers de configuration. Plutôt que de réécrire à chaque fois le code, il existe des fonctions (structures de langage en réalité) capables d'importer et exécuter le code à réutiliser dans la page. Il s'agit des fonctions <span>include()</span> et <span>require()</span>.</p>";
       echo "<p>Lorsque l'on crée un fichier que l'on veut inclure, la convention dit que l'on ajoute .inc avant .php est ces fichier on les crée dans un dossier nommé inc. Il n'y a pas d'influence sur la lecture du fichier, c'est une convention et une organisation.</p>";
       ?>
