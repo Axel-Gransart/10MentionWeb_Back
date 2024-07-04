@@ -1,27 +1,29 @@
 
 :root{
-  font-size: 62.5%;
-  --red: #bb2d3b;
+  --red: #BB2D3B;
   --gray: #191A19;
   --gray-2: #353535;
   --gray-light: #BBBBBB;
   --black: #000;
   --box-shadow-dark: 0px 5px 10px 0px rgba(50,50,50,.8);
-  --box-shadow-light:  -1px 1px 10px 0px #EFE8E8;
+  --box-shadow-light:  -1px 1px 10px 0px #EFE8E8;;
+  font-size: 62.5%;
 }
 
 *{
-  margin: 0; 
-  padding: 0; 
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
   text-decoration: none;
+  /* box-shadow: 0 0 0 3px red inset; */
 }
+
 
 body {
   font-size: 1.6rem;
-  font-family: 'Dosis', sans-serif;
+  font-family: "Dosis", sans-serif;
   background-color: var(--gray);
-  color: #fff; 
+  color: #fff;
 }
 
 nav {
@@ -32,8 +34,8 @@ nav {
 h1 {
   font-size: 4rem !important;
   margin: .8rem 4rem;
-  font-weight: bolder; 
-  font-family: 'Lora', serif !important;
+  font-weight: bolder;
+  font-family: "Lora", serif;
 }
 
 h1 a{
@@ -41,16 +43,26 @@ h1 a{
   color: var(--red) !important;
 }
 
-nav li a{
-  color: #333 !important;
-  margin: 0.8rem ;
-  font-family: 'Lora', serif !important;
+h1 img {
+  width: 50px !important;
+  height: 50px !important;
 }
+
+nav li a{
+  color: var(--black) !important;
+  margin: 0.8rem ;
+  font-family: "Lora", serif;
+}
+
+nav li a.dropdown-item{
+  padding: 0.8rem ;
+}
+
 
 .dropdown-item:focus, .dropdown-item:hover{
   width: 100% !important;
   background-color: var(--red) !important;
-  margin: 0 !important;
+  /* margin: 0 !important; */
 }
 
 nav .navbar-toggler {
@@ -65,7 +77,9 @@ main{
   transition: all .2s;
 }
 
+
 /********************************* Page Accueil ***********************************/
+
 h2{
   font-size: 5rem !important;
   color: var(--red);
@@ -77,14 +91,15 @@ h2{
   margin: 0 auto;
 }
 
-.films > .row > div {
+.films > .row > div {  
   padding : 3rem
 }
 
-.card{   
+.card{
   color: var(--gray);
   box-shadow: var(--box-shadow-dark) !important;
-  transition: all 1s;  
+  transition: all 1s;
+
 }
 
 .card:hover{
@@ -131,7 +146,8 @@ a.btn, input.btnpanier{
   background-color: var(--gray);
   padding: 2rem 3rem;
   transition: all .5s;
-  box-shadow: var(--box-shadow-light) !important;  
+  box-shadow: var(--box-shadow-light) !important;
+
 }
 
 .film i {
@@ -160,8 +176,9 @@ a.btn, input.btnpanier{
 .detailsContent p, ul {
   font-size: 2rem;
 }
-/******************** Page de gestion des films (formulaire) ************************/
 
+
+/******************** Page de gestion des films (formulaire) ************************/
 
 form.back {
   width: 50%;
@@ -170,18 +187,20 @@ form.back {
 }
 
 form.back > div.row {
-  font-size: 1.8rem;    
+  font-size: 1.8rem;
 }
 
 form.back .row {
   padding: 2.5rem;
-  background-color: #212529; 
+  background-color: #212529;
+
 }
 
 form.back  label:not(.form-check-label) {
   margin-bottom: 1.6rem;
   font-weight: bolder;
-  color: var(--black);  
+  color: var(--black);
+
 }
 
 form.back .form-control {
@@ -192,11 +211,13 @@ form.back button {
   font-size: 1.4rem !important;
 }
 
+
 .active{
   background-color: var(--red) !important;
   color: white !important;
   font-weight: bolder;
 }
+
 
 table, .sidebarre {
   background-color: #353535;
@@ -204,22 +225,27 @@ table, .sidebarre {
   box-shadow: var(--box-shadow-light) !important;
 }
 
+
 .bi {
   color: var(--red);
   font-size: 1.8rem;
 }
 
-/* 
+/*
 input{
   outline: 1px solid var(--red) !important;
 
 } */
+
 /* Footer */
 
 footer{
+
   background-color: var(--black);
-  height: 70px !important;
+  height: 100px !important ;
+
 }
+
 
 /* Page panier */
 
@@ -236,7 +262,8 @@ footer{
 
 table {
   border-collapse: collapse;
-  /* width: 100%; */ 
+  /* width: 100%; */
+
 }
 
 th {
@@ -244,7 +271,9 @@ th {
   font-weight: 400;
 }
 
+
 /* classe pour cacher les card quand on click sur une  */
+
 .hidden{
   padding: 0 !important;
   height: 0 !important;
