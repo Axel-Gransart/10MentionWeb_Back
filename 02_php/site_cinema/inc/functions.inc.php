@@ -209,6 +209,43 @@
         3 - On execute la requête
     */
 
+    // Créer un tableau associatif avec les noms des colonnes comme clés
+    // Les noms des clés du tableau $data correspondent aux noms des colonnes dans la base de données.
+    
+    $data = [
+      'lastName' => $lastName,
+      'firstName' => $firstName,
+      'pseudo' => $pseudo,
+      'mdp' => $mdp,
+      'email' => $email,
+      'phone' => $phone,
+      'civility' => $civility,
+      'birthday' => $birthday,
+      'address' => $address,
+      'zip' => $zip,
+      'city' => $city,
+      'country' => $country
+  ];
+
+    // Pour échapper les données et les traiter contre les failles JS (XSS)
+
+  foreach ($data as $key => $value) {
+    $data[$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+  }
+    /* 
+      htmlspecialchars est une fonction qui convertit les caractères spéciaux en entités HTML. 
+      Cela est utilisé afin d'empêcher l'exécution de code HTML ou JavaScript : les attaques XSS (Cross-Site Scripting) injecté par un utilisateur malveillant en échappant les caractères HTML potentiellement dangereux.
+      Par défaut, htmlspecialchars échappe les caractères suivants :
+        - & (ampersand) devient &amp;
+        - < (inférieur) devient &lt;
+        - > (supérieur) devient &gt;
+        - " (guillemet double) devient &quot;
+    
+      ENT_QUOTES : est une constante en PHP  qui onvertit les guillemets simples et doubles. => ' (guillemet simple) devient &#039; 
+      'UTF-8' : Spécifie que l'encodage utilisé est UTF-8.
+    */
+
+
     $cnx = connexionBDD();
 
     $sql =  "INSERT INTO users
@@ -217,22 +254,23 @@
 
     $request = $cnx->prepare($sql);  
     // prepare() est une méthode qui permet de préparer la requête sans l'exécuter. Elle contient un marqueur :firstName (entre autre) qui est vide et attend une valeur.
-    // $requet est à cette ligne encore un objet PDOstatement.
+    // $request est à cette ligne encore un objet PDOstatement.
 
-    $request->execute(array(
-      ":lastName" => $lastName,
-      ":firstName" => $firstName,
-      ":pseudo" => $pseudo,
-      ":email" => $email,
-      ":phone" => $phone,
-      ":mdp" => $mdp,
-      ":civility" => $civility,
-      ":birthday" => $birthday,
-      ":address" => $address,
-      ":zip" => $zip,
-      ":city" => $city,
-      ":country" => $country 
-    ));       // execute() permet d'executer toute la requête préparée avec prepare()
+    $request->execute(array(       // Le tableau associatif contient les valeurs échappées à insérer dans la base de données, associées aux paramètres nommés de la requête préparée.
+      ":lastName" => $data['lastName'],
+      ":firstName" => $data['firstName'],
+      ":pseudo" => $data['pseudo'],
+      ":email" => $data['email'],
+      ":phone" => $data['phone'],
+      ":mdp" => $data['mdp'],
+      ":civility" => $data['civility'],
+      ":birthday" => $data['birthday'],
+      ":address" => $data['address'],
+      ":zip" => $data['zip'],
+      ":city" => $data['city'],
+      ":country" => $data['country']
+    ));      
+      // execute() permet d'executer toute la requête préparée avec prepare()
   }
 
 
@@ -331,8 +369,25 @@
     ));
   }
 
+   //////////////////////////////// fonction pour modifier le role d'un utilisateur //////////////////////////////////////////
 
-  ################### Fonctions du CRUD pour les catégories ###################
+   function modifyRole(int $id_user, string $role) :void {
+
+    $cnx = connexionBDD();
+
+    $sql = "UPDATE users SET role = :role WHERE id_user = :id_user";
+
+
+    $request = $cnx->prepare($sql);
+
+    $request->execute(array(
+      ":role" => $role,
+      ":id_user" => $id_user
+    ));
+  }
+
+
+  //////////////////////////////// Fonctions du CRUD pour les catégories ////////////////////////////////
 
   // insertion categories 
 
@@ -390,11 +445,27 @@
 
    //////////////////////////////// fonction pour supprimer une catégorie //////////////////////////////////////////
 
-   function deleteCat(int $id_category) :void{
+    function deleteCat(int $id_category) :void{
+
+      $cnx = connexionBDD();
+
+      $sql = "DELETE FROM categories WHERE id_category = :id_category";
+
+      $request = $cnx->prepare($sql);
+
+      $request->execute(array(
+
+        ":id_category"=>$id_category
+      ));
+    }
+
+    //////////////////////////////// fonction pour modifier une catégorie //////////////////////////////////////////
+
+    function modifyCat(int $id_category) :void{
 
     $cnx = connexionBDD();
 
-    $sql = "DELETE FROM categories WHERE id_category = :id_category";
+    $sql = "UPDATE categories SET description = :description WHERE id_category = :id_category";
 
     $request = $cnx->prepare($sql);
 
@@ -406,21 +477,25 @@
 
 
 
+ //////////////////////////////// fonction pour récupérer un seul utilisateur //////////////////////////////////////////
 
 
 
-
-  function viewUser( int $idUser) {
+  function showUser(int $id_user) : mixed {
 
     $cnx = connexionBDD();
-    $sql = "SELECT * FROM users WHERE id_user = $idUser";
+    $sql = "SELECT * FROM users WHERE id_user = :id_user";
 
     $request = $cnx->prepare($sql);
+
+    $request->execute(array(
+
+      ":id_user"=>$id_user
+    ));
 
     $result = $request->fetch();
       
     return $result;
-
   }
   
   

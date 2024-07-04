@@ -6,7 +6,7 @@
   ?>
   <header class="p-5 m-4 bg-light rounded-3 border ">
     <section class="container py-5">
-      <h1>Les boucles en PHP</h1>
+      <h1 class="display-5 text-center fw-bold">Les boucles en PHP</h1>
       <p class="col-md-12 fs-4"> Les boucles (qu'on appelle aussi des structures itératives) sont un moyen de faire
         répéter plusieurs fois un même morceau de code. Une boucle est donc une répétition, comme on a pu le voir en
         JavaScript</p>

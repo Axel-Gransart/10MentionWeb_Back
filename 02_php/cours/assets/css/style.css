@@ -8,6 +8,10 @@ img[src="assets/img/logo.png"]{
     width: 50px;
 }
 
+div h2 {
+    margin-top: 5rem !important;
+}
+
 table {
     text-align: center;
     border: 3px solid #0d6efd;

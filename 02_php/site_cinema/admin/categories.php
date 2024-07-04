@@ -67,9 +67,16 @@
 
       deleteCat($id_category);     
     }
+
+    if ($_GET['action'] == 'update' && !empty($_GET['id_category'])) {      
+
+      $id_category = htmlentities($_GET['id_category']);
+
+      modifyCat($id_category);     
+    }
   }
 
-  debug($categories);
+  // debug($categories);
 ?>
 
 <main>
@@ -120,7 +127,7 @@
           <td><?= $cat['name']?></td>
           <td><?= $cat['description']?></td>          
           <td class="text-center"><a href="?action=delete&id_category=<?= $cat['id_category']?>"><i class="bi bi-trash3"></i></a></td>
-          <td></td>
+          <td class="text-center"><a href="?action=update&id_category=<?= $cat['id_category']?>"><i class="bi bi-pen"></i></a></td>
         </tr>
       <?php
         }

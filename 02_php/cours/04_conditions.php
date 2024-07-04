@@ -6,7 +6,7 @@
   ?>
   <header class="p-5 m-4 bg-light rounded-3 border ">
         <section class="container py-5">
-            <h1>Les conditions en PHP</h1>
+            <h1 class="display-5 text-center fw-bold">Les conditions en PHP</h1>
             <p class="col-md-12 fs-4"> Les conditions sont un chapitre clé en PHP comme dans les autres langages de programmation. Par exemple, lorque l'on fera une page de connexion, on aura la condition suivante: sSI l'adresse existe dans la BDD et SI le mdp correspond à l'adresse, l'utilisateur est connecté  SINON il reste sur la page avec une messega d'erreur</p> 
         </section>
   </header><!-- fin header -->

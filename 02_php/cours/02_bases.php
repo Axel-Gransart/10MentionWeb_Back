@@ -4,30 +4,29 @@
     $paragraphe=null;
     include "inc/header.inc.php";
   ?>
-<header class="p-5 m-4 bg-light rounded-3 border">
+<header class="p-5 m-4 bg-light rounded-5 border">
   <section class="container py-5">
-    <h1 class="display-5 fw-bold">Les bases du PHP</h1>
+    <h1 class="display-5 text-center fw-bold">Les bases du PHP</h1>
   </section>
 </header>
 <main class="container-fluid px-5">
-  <div class="row border p-5 mt-5">
-    <div class="col-sm-12 col-md-6">
-      <h2>1 - Les balises PHP</h2>
-      <p>Pour ouvrir un passage en PHP, on utilise la balise <span class="fw-bold"><code>&lt;?php</code></span></p>
-      <p>Pour fermer un passage en PHP, on utilise la balise <span class="fw-bold"><code>?></code></span></p>
+  <div class="row border rounded-5 p-5 mt-5">
+    <div class="border rounded-5 col-sm-12 col-md-6">
+      <h2 class="fw-bold text-primary mt-5">1 - Les balises PHP</h2>
+      <p>Pour ouvrir un passage en PHP, on utilise la balise : <span class="fw-bold"><code>&lt;?php</code></span></p>
+      <p>Pour fermer un passage en PHP, on utilise la balise : <span class="fw-bold"><code>?></code></span></p>
     </div>
-    <div class="col-sm-12 col-md-6">
-      <h2>2- Les commentaires en PHP</h2>
+    <div class="border rounded-5 col-sm-12 col-md-6">
+      <h2 class="fw-bold text-primary mt-5">2- Les commentaires en PHP</h2>
       <p>Pour faire un commentaires sur une ligne on utilise :</p>
       <ul class="bg-primary-subtle">
         <li><em>// mon commentaire</em></li>
         <li><em># mon commentaire</em></li>
       </ul>
       <?php
-
-            // un premier commentaire
-            # un deuxieme commentaire
-        ?>
+        // un premier commentaire
+        # un deuxieme commentaire
+      ?>
       <p>Pour faires des commentaires sur plusieurs lignes on utilise :</p>
       <ul class="bg-primary-subtle">
         <li>
@@ -40,14 +39,15 @@
         </li>
       </ul>
       <?php
-            /*
-                j'écris un 
-                commentaire sur plusieurs
-                lignes
-            */
-        ?>
+        /*
+          j'écris un 
+          commentaire sur plusieurs
+          lignes
+        */
+      ?>
     </div>
-    <div class="col-sm-12">
+    <div class="border rounded-5 col-sm-12 col-md-6">
+      <h2 class="fw-bold text-primary mt-5">3 - Extensions".php" VS ".html"</h2>
       <p>En dehors des balises PHP, il;est possible d'écrire du code HTML dans fichier ayant l'extension
         .php, ce qui n'est pas possible dans un fichier .html. Cela est dû au fait que les fichiers .php sont traités
         par le serveur en tant que code PHP et peuvent in clure des instruction PHP et HTML, tandis que les fichiers
@@ -59,88 +59,93 @@
         fichier. De plus, certains standars de codage et bonnes pratique recommandent de fermer toutes les balises PHP
         pour une meilleure lisibilité et maintenabilité du code. </p>
     </div>
-    <div class="col-sm-12">
-      <h2>4 - affichage</h2>
-      <p>Pour afficher du texte sur notre page à partir d'un script PHP on peut utiliser</p>
+    <div class="border rounded-5 col-sm-12 col-md-6">
+      <h2 class="fw-bold text-primary mt-5">4 - affichage</h2>
+      <p>Pour afficher du texte sur notre page à partir d'un script PHP on peut utiliser :</p>
       <ul>
-        <li>L'instruction <span>echo</span> : permet d'effectuer un affichage. Nous pouvons y mettre du HTML</li>
-        <div class="alert alert-primary w-50">
-          <?php
-            echo "je suis un texte en PHP dans une instruction echo";
-          ?>
-        </div>
-        <li>
-          L'instruction <span>print</span> : c'est une instruction d'affichage. Nous pouvons y mettre du HTML
+        <li>L'instruction <em class="fw-bold">echo</em> : permet d'effectuer un affichage. Nous pouvons y mettre du HTML
         </li>
         <div class="alert alert-primary w-50">
           <?php
-            print "je suis un texte en PHP dans une instruction <span> print </span>";
+            echo "je suis un texte en PHP dans une instruction <em class='fw-bold'>echo</em>";
           ?>
         </div>
         <li>
-          Les instructions <span>var_dump()</span>et <span>print_r</span> : permettent d'afficher du contenu mais on
-          s'en servira principalement pour débugger. C'est deux fonctions permettent d'analyser dans le navigateur le
-          contenu d'une variable par exemple (nous verrons l'utilisation plus tard)
+          L'instruction <em class="fw-bold">print</em> : c'est une instruction d'affichage. Nous pouvons y mettre du
+          HTML
+        </li>
+        <div class="alert alert-primary w-50">
+          <?php
+            print "je suis un texte en PHP dans une instruction <em class='fw-bold'> print </em>";
+          ?>
+        </div>
+        <li>
+          Les instructions <em class="fw-bold">var_dump()</em> et <em class="fw-bold">print_r</em> : permettent
+          d'afficher du contenu mais on s'en servira principalement pour débugger. Ces deux fonctions permettent
+          d'analyser dans le navigateur le contenu d'une variable par exemple (nous verrons l'utilisation plus tard)
         </li>
       </ul>
-      <div class="col-sm-12">
-        <h2>5 - Concaténation</h2>
-        <p>En PHP on concaténe avec le <span>.</span>(point)</p>
-      </div>
-      <div class="col-sm-12">
-        <h2>6 - Les variables utilisateurs</h2>
-        <p>Une variabme est un espace mémoire qui porte un nom et qui permet de conserver une valeur. Cette valeur peut
-          être de n'importe quel type.</p>
-        <p>Chaque variable posséde un identifiant particulier qui commence toujours per le caractère dollar
-          <span>$</span>.</p>
-        <p>Ce caractère est suivi du nom de la variable. Il existe des règles de nommage des variables en PHP :</p>
-        <ul>
-          <li>Par convention un nom de variable commence par un miniscule puis on met un majuscule à chaque mot</li>
-          <li>Le nom commence par un caractère alphabétique, pris dans les ennsembles [A_Z] ou [a_z] ou un underscore
-            <span>_</span>(à éviter car en PHP existe des variables prédéfinies et qui commencent par le underscore)
-          </li>
-          <li>Les caractères qui suivent peuvent être les mêmes avec en plus l'ensemble [0_9] (jamais au début)</li>
-          <li>La longeur du nom de notre variable n'est pas limitée mais il convient d'être raisonnable. Il est
-            conseillé d'avoir des noms de variable le plus parlant possible. Par exemple <span>$nomClient</span> est
-            plus parlant que <span>$x</span>.</li>
-          <li>Les noms de variables sont sensibmles à la casse : <span>$mavar</span> et <span>$maVar</span> ne seront
-            pas les mêmes variables.</li>
-        </ul>
-        <div class="row justify-content-center">
-          <div class="col-sm-12 col-md-4 me-5 alert alert-success">
-            <p class="text-center">Les noms de variables suivant sont corrects</p>
-            <ul>
-              <li><span>$mavar</span></li>
-              <li><span>$maVar</span></li>
-              <li><span>$_mavar</span></li>
-              <li><span>$M1</span></li>
-              <li><span>$_123</span></li>
-            </ul>
-          </div>
-          <div class="col-sm-12 col-md-4 me-5 alert alert-danger">
-            <p class="text-center">Les noms de variables suivant sont interdits</p>
-            <ul>
-              <li><span>$*mavar</span></li>
-              <li><span>$5_maVar</span></li>
-              <li><span>$mavar2+</span></li>
-            </ul>
-          </div>
+    </div>
+    <div class="border rounded-5 col-sm-12">
+      <h2 class="fw-bold text-primary mt-5">5 - Concaténation</h2>
+      <p>En PHP on concatène avec le <em class="fw-bold">.</em> (point)</p>
+    </div>
+    <div class="border rounded-5 col-sm-12">
+      <h2 class="fw-bold text-primary mt-5">6 - Les variables utilisateurs</h2>
+      <p>Une variable est un espace mémoire qui porte un nom et qui permet de conserver une valeur. Cette valeur peut
+        être de n'importe quel type.</p>
+      <p>Chaque variable posséde un identifiant particulier qui commence toujours per le caractère dollar <em
+          class="fw-bold">$</em>.</p>
+      <p>Ce caractère est suivi du nom de la variable. Il existe des règles de nommage des variables en PHP :</p>
+      <ul>
+        <li>Par convention un nom de variable commence par une miniscule puis on met une majuscule à chaque nouveau mot
+        </li>
+        <li>Le nom commence par un caractère alphabétique, pris dans les ennsembles [A_Z] ou [a_z] ou un underscore
+          <span class="fw-bold">_</span> (à éviter car en PHP, il existe des variables prédéfinies et qui commencent par
+          underscore)
+        </li>
+        <li>Les caractères qui suivent peuvent être les mêmes avec en plus l'ensemble [0_9] (jamais au début)</li>
+        <li>La longueur du nom de notre variable n'est pas limitée mais il convient d'être raisonnable. Il est
+          conseillé d'avoir des noms de variable le plus parlant possible. Par exemple <span
+            class="fw-bold">$nomClient</span> est plus parlant que <span class="fw-bold">$x</span>.</li>
+        <li>Les noms de variables sont sensibles à la casse : <span class="fw-bold">$mavar</span> et <span
+            class="fw-bold">$maVar</span> ne seront pas les mêmes variables.</li>
+      </ul>
+      <div class="row justify-content-center">
+        <div class="border rounded col-sm-12 col-md-4 me-5 alert alert-success">
+          <p class="text-center">Les noms de variables suivant sont corrects</p>
+          <ul>
+            <li><span>$mavar</span></li>
+            <li><span>$maVar</span></li>
+            <li><span>$_mavar</span></li>
+            <li><span>$M1</span></li>
+            <li><span>$_123</span></li>
+          </ul>
+        </div>
+        <div class="border rounded col-sm-12 col-md-4 me-5 alert alert-danger">
+          <p class="text-center">Les noms de variables suivant sont interdits</p>
+          <ul>
+            <li><span>$*mavar</span></li>
+            <li><span>$5_maVar</span></li>
+            <li><span>$mavar2+</span></li>
+          </ul>
         </div>
       </div>
+
     </div>
-    <div class="col-sm-12">
-      <h2>7 - Affectation des variables utilisateurs</h2>
+    <div class="border rounded-5 col-sm-12">
+      <h2 class="fw-bold text-primary mt-5">7 - Affectation des variables utilisateurs</h2>
       <p>Affecter une variable consiste à lui donner une valeur : lorsque vous déclarez une variable, vous ne lui donnez
         pas de titre, c'est la valeur que vous lui affectez qui va déterminer son type</p>
       <ul>
-        <li><span>$maVar1 = 75; integer</span></li>
-        <li><span>$maVar2 = "Paris"; => string</span></li>
-        <li><span>$maVar3 = 12.5; => double</span></li>
-        <li><span>$maVar4 = true ; => boolean</span></li>
+        <li>$maVar1 = 75;<span class="fw-bold"> => integer</span></li>
+        <li>$maVar2 = "Paris";<span class="fw-bold"> => string</span></li>
+        <li>$maVar3 = 12.5;<span class="fw-bold"> => double</span></li>
+        <li>$maVar4 = true;<span class="fw-bold"> => boolean</span></li>
       </ul>
     </div>
-    <div class="col-sm-12">
-      <h2>8 - Les opérateurs numériques</h2>
+    <div class="border rounded-5 col-sm-12">
+      <h2 class="fw-bold text-primary mt-5">8 - Les opérateurs numériques</h2>
 
       <table class="table table-dark table-hover table-bordered">
         <thead>
@@ -172,7 +177,8 @@
           </tr>
           <tr>
             <th scope="row">%</th>
-            <td>Modulo : reste de la division du premier opérande par le deuxième. Fonctionne aussi avec des opérandes décimaux. Dans ce cas, PHP ne tient compte que des parties entières de chacun des opérandes.</td>
+            <td>Modulo : reste de la division du premier opérande par le deuxième. Fonctionne aussi avec des opérandes
+              décimaux. Dans ce cas, PHP ne tient compte que des parties entières de chacun des opérandes.</td>
           </tr>
           <tr>
             <th scope="row">--</th>
@@ -191,8 +197,8 @@
         </tbody>
       </table>
     </div>
-    <div class="col-sm-12">
-      <h2>9- Les opérateurs d'affectation combinés numèrique</h2>
+    <div class="border rounded-5 col-sm-12">
+      <h2 class="fw-bold text-primary mt-5">9- Les opérateurs d'affectation combinés numérique</h2>
       <p>En plus de l'opérateur classique d'affectation (=), il existe plusieurs opérateurs d'affectation
         combinés. Ces opérateurs réalisent à la fois une opération entre deux opérandes et l'affectation du
         résultat à l'opérande de gauche.</p>
@@ -248,8 +254,8 @@
         </tbody>
       </table>
     </div>
-    <div class="col-sm-12">
-      <h2>10 - Les variables prédéfinies</h2>
+    <div class="border rounded-5 col-sm-12">
+      <h2 class="fw-bold text-primary mt-5">10 - Les variables prédéfinies</h2>
       <p>PHP propose toute une série de variables qui sont déjà présentes dans le langage sans que vous n'ayez à les
         déclarer et accessibles à tous vos scripts. Ces variables s'écrivent toujours en majuscules et nous fournissent
         divers renseignements.</p>
@@ -276,7 +282,7 @@
           <tr>
             <td>$_COOKIE</td>
             <td>Contient le nom et la valeur des cookies enregistrés sur le poste client. Comme pour
-              $GLOBALS, le clés de ce tableau sont les noms des cookies.</td>
+              $GLOBALS, les clés de ce tableau sont les noms des cookies.</td>
           </tr>
           <tr>
             <td>$_ENV</td>
@@ -286,12 +292,12 @@
           <tr>
             <td>$_GET</td>
             <td>Elle contient les informations passées à travers un url ou un formulaire ayant la méthod
-              GET. Dans ce cas, les clés du tableau sont le name des champs du formulaire.</td>
+              GET. Dans ce cas, les clés du tableau sont le nom (name) des champs du formulaire.</td>
           </tr>
           <tr>
             <td>$_POST</td>
             <td>Contient le nom et la valeur des données issues d'un formulaire envoyé par la method
-              POST. Comme pour $_GET c'est le name des input qui sera la clé du tableau. </td>
+              POST. Comme pour $_GET c'est le nom (name) des input qui sera la clé du tableau. </td>
           </tr>
           <tr>
             <td>$_REQUEST</td>
@@ -299,27 +305,28 @@
           </tr>
           <tr>
             <td>$_SERVER</td>
-            <td>Contient les informations liées au serveur web, tel le contenu des en-têtes HTTP ou le nom du script en
+            <td>Contient les informations liées au serveur web, tel que le contenu des en-têtes HTTP ou le nom du script
+              en
               cours d'exécution. Retenons les variables suivantes :
               <ul>
-                <li><code>$_SERVER["HTTP_ACCEPT_LANGUAGE"]</code>, qui contient le code de langue du
-                  navigateur client.</li>
-                <li><code>$_SERVER["HTTP_COOKIE"]</code>, qui contient le nom et la valeur des
-                  cookies lus
-                  sur
-                  le poste client.</li>
+                <li><code>$_SERVER["HTTP_ACCEPT_LANGUAGE"]</code>, qui contient le code de langue du navigateur client.
+                </li>
+                <li><code>$_SERVER["HTTP_COOKIE"]</code>, qui contient le nom et la valeur des cookies lus sur le poste
+                  client.
+                </li>
                 <li><code>$_SERVER["HTTP_HOST"]</code>, qui donne le nom de domaine.</li>
                 <li><code>$_SERVER["SERVER_ADDR"]</code>, qui indique l'adresse IP du serveur.</li>
-                <li><code>$_SERVER["PHP_SELF"]</code>, qui contient le nom du script en cours. Nous
-                  l'utiliserons souvent dans les formulaires.</li>
-                <li><code>$_SERVER["QUERY_STRING"]</code>, qui contient la chaîne de la requête
-                  utilisée
-                  pour accéder au script.
+                <li><code>$_SERVER["PHP_SELF"]</code>, qui contient le nom du script en cours. Nous l'utiliserons
+                  souvent dans les formulaires.</li>
+                <li><code>$_SERVER["QUERY_STRING"]</code>, qui contient la chaîne de la requête utilisée pour accéder au
+                  script.
+                </li>
+              </ul>
             </td>
           </tr>
           <tr>
             <td>$_SESSION</td>
-            <td>Contient l'ensemble de nom de variables de session et leur valeur</td>
+            <td>Contient l'ensemble des noms de variables de la session et leur valeur</td>
           </tr>
           <tr>
             <td>$_FILES</td>
@@ -328,16 +335,18 @@
         </tbody>
       </table>
     </div>
-    <div class="col-sm-12">
-      <h2>11 - Les constantes utilisateurs</h2>
+    <div class="border rounded-5 col-sm-12 col-md-6">
+      <h2 class="fw-bold text-primary mt-5">11 - Les constantes utilisateurs</h2>
       <p>Une constante permet de conserver une valeur sauf que celle-ci ne peut pas changer. C'est à dire qu'on ne
         pourra pas la modifier durant l'éxécution du script. C'est utile par exemple pour conserver les paramètres de
         connexion à la BDD de façon certaine. </p>
-      <p>Les constantes sont sensible à la casse. Par convention une constante s'écrit toujours en MAJUSCULE</p>
-      <p>Pour définir une constante on utilise la fonction <span>define()</span> dont la syntaxe sera la suivante:
+      <p>Les constantes sont sensible à la casse. Par convention une constante s'écrit toujours en <span
+          class="fw-bold">MAJUSCULE</span></p>
+      <p>Pour définir une constante on utilise la fonction <em class="fw-bold">define()</em> dont la syntaxe sera la
+        suivante:
         <code>define("NOMCONSTANTE","Valeur constante");</code> (ex : voir code VS code)
       </p>
-      <div class="alert alert-primary w-25">
+      <div class="alert alert-primary w-50">
         <?php
           define('CAPITALE_FRANCE', 'Paris'); // Ici on déclare la constante CAPITALE_FRANCE à laquelle on affecte 'Paris'
           echo '<p>define("CAPITALE_FRANCE", "Paris")</p>';
@@ -346,10 +355,10 @@
         ?>
       </div>
     </div>
-    <div class="col-sm-12">
-      <h2>12 - Constantes prédéfinies </h2>
+    <div class="border rounded-5 col-sm-12 col-md-6">
+      <h2 class="fw-bold text-primary mt-5">12 - Constantes prédéfinies </h2>
       <p>Il existe en PHP un grand nombre de constantes prédéfinies que nous pouvons notamment utiliser dans les
-        fonctions comme paramètres permettant de définr des options.</p>
+        fonctions comme paramètres permettant de définir des options.</p>
       <p>Nous allons voir <span>Les constantes magiques</span> .</p>
       <table class="table table-dark table-hover table-bordered">
         <thead>
@@ -386,11 +395,11 @@
         </tbody>
       </table>
     </div>
-    <div class="col-sm-12">
-      <h2>13 - Les opérateurs booléens</h2>
+    <div class="border rounded-5 col-sm-12">
+      <h2 class="fw-bold text-primary mt-5">13 - Les opérateurs booléens</h2>
       <p>Quand ils sont associés, les opérateurs booléens servent à écrire des expressions simples ou complexes, qui
-        sont évaluées par une valeur booléenne TRUE ou FALSE. Ces valeurs seront utilisées dans les instructions
-        conditionnelles.</p>
+        sont évaluées par une valeur booléenne <em class="fw-bold">TRUE</em> ou <em class="fw-bold">FALSE</em>. Ces
+        valeurs seront utilisées dans les instructions conditionnelles.</p>
       <table class="table table-dark table-hover table-bordered">
         <thead>
           <tr>
@@ -403,34 +412,32 @@
             <th scope="row">==</th>
             <td>
               Teste l'égalité de deux valeurs. L'expression $a == $b vaut TRUE si la valeur de $a est
-              égale
-              à celle de $b et
-              FALSE dans le cas contraire </td>
+              égale à celle de $b et FALSE dans le cas contraire
+            </td>
           </tr>
           <tr>
             <th scope="row">!= ou &lt;></th>
             <td>
               Teste l'inégalité de deux valeurs.<br>
-              L'expression $a != $b vaut TRUE si la valeur de $a est différente de celle de $b et
-              FALSE
-              dans le cas contraire.
+              L'expression $a != $b vaut TRUE si la valeur de $a est différente de celle de $b et FALSE dans le cas
+              contraire.
             </td>
           </tr>
           <tr>
             <th scope="row">===</th>
             <td>
               Teste l'identité des valeurs et les types de deux expressions.<br>
-              L'expression $a === $b vaut TRUE si la valeur de $a est égale à celle de $b et que $a et
-              $b
-              sont du même type. Elle vaut FALSE dans le cas contraire</td>
+              L'expression $a === $b vaut TRUE si la valeur de $a est égale à celle de $b et que $a et $b sont du même
+              type. Elle vaut FALSE dans le cas contraire
+            </td>
           </tr>
           <tr>
             <th scope="row">!==</th>
             <td>
               Teste la non-identité de deux expressions.<br>
-              L'expression $a !== $b vaut TRUE si la valeur de $a est différente de celle de $b ou si
-              $a et
-              $b sont d'un type différent. Dans le cas contraire, elle vaut FALSE </td>
+              L'expression $a !== $b vaut TRUE si la valeur de $a est différente de celle de $b ou si $a et $b sont d'un
+              type différent. Dans le cas contraire, elle vaut FALSE
+            </td>
           </tr>
           <tr>
             <th scope="row">&lt;</th>
@@ -459,16 +466,15 @@
           <tr>
             <th scope="row">&lt;=></th>
             <td>
-              Avec $a<=>$b, retourne -1, 0 ou 1 respectivement si $a<$b, $a=$b ou $a>$b ($a et $b
-                  peuvent
-                  être des chaînes).
+              Avec $a<=>$b, retourne -1, 0 ou 1 respectivement si $a<$b, $a=$b ou $a>$b ($a et $b peuvent être des
+                  chaînes).
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="col-12">
-      <h3>14 - Les opérateurs logiques </h3>
+    <div class="border rounded-5 col-12">
+      <h2 class="fw-bold text-primary mt-5">14 - Les opérateurs logiques </h2>
       <table class="table table-dark table-hover table-bordered">
         <thead>
           <tr>
@@ -503,10 +509,11 @@
           </tr>
         </tbody>
       </table>
-      <p class="alert alert-danger">Attention, une erreur classique dans l'écriture des expressions conditionnelles
-        consiste à confondre l'opérateur de comparaison (==) et l'opérateur d'affectation (=). L'usage des parenthèses
-        est recommandé pour éviter les problèmes liés à l'ordre d'évaluation des opérateurs.</p>
     </div>
+  </div>
+    <p class="py-5 my-5 alert alert-danger"><span class="fw-bold">Attention</span>, une erreur classique dans l'écriture des expressions conditionnelles
+      consiste à confondre l'opérateur de comparaison (==) et l'opérateur d'affectation (=). L'usage des parenthèses
+      est recommandé pour éviter les problèmes liés à l'ordre d'évaluation des opérateurs.</p>
   </div>
   </div>
 </main>

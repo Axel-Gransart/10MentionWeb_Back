@@ -4,12 +4,16 @@ $titre= "Les fonctions en PHP";
 $paragraphe = "Les fonctions";
 require_once ("inc/header.inc.php");
 ?>
-
-<main class="container px-5 border">
+<header class="p-5 m-4 bg-light rounded-3 border ">
+  <section class="container py-5">
+    <h1 class="display-5 text-center fw-bold">Les fonctions en PHP</h1>  
+  </section>
+</header>
+<main class="container px-5 border border-dark mt-5">
   <div class="row mt-5">
     <h2 class="mt-5">1 - Les fonctions prédéfinies </h2>
     <ul>
-      <li> Une fonction prédéfine permet de réaliser un traitement spécifique prédéterminé dans le langage PHP</li>
+      <li> Une fonction prédéfinie permet de réaliser un traitement spécifique prédéterminé dans le langage PHP</li>
     </ul>
     <div class="col-sm-12 mt-5">
       <h3 class="text-primary text-center mb-5">Les fonctions prédéfinies des chaînes de carcatères </h3>
@@ -17,41 +21,139 @@ require_once ("inc/header.inc.php");
         <div class="col-sm-12 col-md-6">
           <ul>
             <!-- https://www.php.net/manual/en/function.rtrim.php -->
-            <li><span>substr()</span> : permet d'extraire une partie d'une chaine de caractère</li>
-            <li><span>strpos()</span>: permet de récuperer la position d'un caractère dans une chaîne de caractère </li>
-            <li><span>strlen()</span> : permet de récupérer la taille d'une chaîne de carctére</li>
-            <li><span>substr_replace()</span> : permet de remplacer un segment de la chaîne</li>
-            <li><span>substr_ireplace()</span>: Version insensible à la casse de str_replace()</li>
-            <li><span>str_contains()</span> : permet de vérifier si la chaîne contient un mot particulier</li>
-            <li><span>str_starts_with()</span> : permet de vérifier si une chaîne commence par une sous-chaîne donnée
+            <li><em class="fw-bold">substr()</em> : permet d'extraire une partie d'une chaine de caractère</li>
+            <li><em class="fw-bold">strpos()</em>: permet de récuperer la position d'un caractère dans une chaîne de caractère </li>
+            <li><em class="fw-bold">strlen()</em> : permet de récupérer la taille d'une chaîne de caractère</li>
+            <li><em class="fw-bold">substr_replace()</em> : permet de remplacer un segment de la chaîne</li>
+            <li><em class="fw-bold">substr_ireplace()</em>: Version insensible à la casse de str_replace()</li>
+            <li><em class="fw-bold">str_contains()</em> : permet de vérifier si la chaîne contient un mot particulier</li>
+            <li><em class="fw-bold">str_starts_with()</em> : permet de vérifier si une chaîne commence par une sous-chaîne donnée
             </li>
 
           </ul>
         </div>
         <div class="col-sm-12 col-md-6">
           <ul>
-            <li><span>str_ends_with()</span> : permet de vérifier si une chaîne se termine par une sous-chaîne donnée
+            <li><em class="fw-bold">str_ends_with()</em> : permet de vérifier si une chaîne se termine par une sous-chaîne donnée
             </li>
-            <li><span>trim()</span> : permet de supprimer les espaces avant et après une chaîne de caractère </li>
-            <li><span>strtolower()</span> : permet de retourner la chaîne en miniscule</li>
-            <li><span>strtoupper()</span> : permet de retourner la chaîne en majuscules</li>
-            <li><span>ucfirst()</span> : permet de mettre le premier caractère en majuscule. </li>
-            <li><span>lcfirst()</span> : permet de mettre le premier caractère en miniscule. </li>
+            <li><em class="fw-bold">trim()</em> : permet de supprimer les espaces avant et après une chaîne de caractère </li>
+            <li><em class="fw-bold">strtolower()</em> : permet de retourner la chaîne en miniscule</li>
+            <li><em class="fw-bold">strtoupper()</em> : permet de retourner la chaîne en majuscules</li>
+            <li><em class="fw-bold">ucfirst()</em> : permet de mettre le premier caractère en majuscule. </li>
+            <li><em class="fw-bold">lcfirst()</em> : permet de mettre le premier caractère en miniscule. </li>
           </ul>
         </div>
+        <div class="border">
+          <p>Pour les exemples suivants, je déclare une variable :</p>
+          <pre> $maChaine = "bonjour j'aime le PHP !!";</pre><br>
+          <h4>J'affiche un caractère de la chaine de caractère</h4>
+          <pre> echo $maChaine[3];</pre>
+          <?php
+            $maChaine = "bonjour j'aime le PHP !!";
+            // J'affiche un caractère de la chaine de caractère
+            echo $maChaine[3] . "<br>";
+          ?>
+          <p>-> Ici nous avons demander de nous afficher le caractère qui à l'index 3</p>
+        </div>
+        <div class="border">
+          <h4>Modifier un caractère de la chaine</h4>
+          <pre> $maChaine[0] = "B";</pre>
+          <p>je change le b minuscule en B majuscule</p>
+          <pre> echo $maChaine;</pre>
+          <?php
+            // Modifier un caractère de la chaine
+            $maChaine[0] = "B"; // je change le b minuscule en B majuscule
+            echo $maChaine . "<br>";
+          ?>
+          <p>-> La lettre qui a l'index 0 a été modifiée en 'B'</p>
+        </div>
+        <div class="border">
+          <h4>Extraire une partie de la chaine de caractère</h4>
+          <pre> $nvlChaine = substr($maChaine, 0, 9);</pre>
+          <p>Cette fonction prend en paramètre la variable, le point de départ et la longueur qu'on souhaite obtenir</p>
+          <pre> echo $nvlChaine;</pre>
+          <?php
+            // Extraire une partie de la chaine de caractère
+            $nvlChaine = substr($maChaine, 0, 9); // Cette fonction prend en paramètre la variable, le point de départ et la longueur qu'on souhaite obtenir
+            echo $nvlChaine . "<br>";
+          ?>
+        </div>
+        <div class="border">
+          <h4>récupérer la position d'un caractère dans une chaine de caractère</h4>
+          <pre> strpos($maChaine, 'H');
+ echo 'La position de la lettre H dans ma phrase est : ' . strpos($maChaine, 'H');</pre>
+          <?php
+            echo 'La position de la lettre H dans ma phrase est : ' . strpos($maChaine, 'H'). '<br>';
+          ?>
+          <p><span class="text-danger fw-bold">Attention !</span> La fonction est case sensitive. Elle fait attention à la casse des lettres : si je mets la lettre h en minuscule, il ne nous affiche rien.</p>
+          <pre> var_dump(strpos($maChaine, 'h'));</pre>
+          <?php
+            var_dump(strpos($maChaine, 'h'));
+          ?>
+        </div>
+        <div class="border">
+          <h4>Récuperer la taille d'une chaîne de caractère</h4>
+          <pre> echo strlen($maChaine);</pre>
+          <?php
+            # Récuperer la taille d'une chaîne de caractère
+            echo strlen($maChaine);
+          ?>
+          <p>La chaîne de caractère de ma variable $maChaine à une longueur de 24 caractères</p>
+          <p><span class="text-danger fw-bold">/!\ Attention</span> : Les espaces sont des caractères dans la chaine et les accents circonflexe sont considérés comme 2 caractères.</p>
+        </div>
+        <div class="border">
+          <h4>Remplacer une partie de la chaîne</h4>
+          <pre> $maChaine = str_replace('PHP', 'JS', $maChaine);</pre>
+          <p>Les paramètres de la fonction : la chaîne de caractère à changer, la chaîne de caractère qui remplace, et a variable à manipuler</p>
+          <pre> echo $maChaine;</pre>
+          <?php
+             # Remplacer une partie de la chaîne
+            
+             $maChaine = str_replace('PHP', 'JS', $maChaine); // Les paramètres de la fonction : la chaîne de caractère à changer, la chaîne de caractère qui remplace, et a variable à manipuler
+             echo $maChaine .'<br><br>';
+          ?>
+          <p>Ici aussi la fonction est sensible à la casse on ne change pas la valeur si y'en as une différence entre la valeur cherché et stocké</p>
+          <pre> $maChaine = str_ireplace('bonjour', 'Hello', $maChaine);</pre>
+          <?php
+             // Ici aussi la fonction est sensible à la casse on ne change pas la valeur si y'en as une différence entre la valeur cherché et stocké
+             // il existe un autre fonction qui ne fait pas de distinction entre les lettres majuscule et miniscule dans la chaîne 
+             $maChaine = str_ireplace('bonjour', 'Hello', $maChaine);
+             echo $maChaine .'<br>';
+          ?>
+
+        </div>
+        <div class="border">
+          <h4>Vérifier si la chaîne contient un mot particulier </h4>
+          <pre> var_dump(str_contains($maChaine, 'JS'));</pre>
+          <p>les paramètres : la variable qui contient la chaîne et le mot à vérifier dans la chaîne</p>
+          <p>Le paramètre est sensible à la casse</p>
+          <p>Le résultat est un boolean true ou false (trouvé ou pas trouvé)</p>
+          <?php
+            # Vérifier si la chaîne contient un mot particulier 
+  
+            var_dump(str_contains($maChaine, 'JS'));
+            // les paramètres : la variable qui contient la chaîne et le mot à vérifier dans la chaîne
+            // sensible à la casse 
+            // Le résultat est un boolean true ou false (trouvé ou pas trouvé)
+          ?>
+        </div>
       </div>
+      
       <?php
-                        $maChaine = "Bonjour j'aime le PHP !!";
-                        // J'affiche un caractère de la chaine de caractère
-                        echo $maChaine[3] . "<br>";
+        //  div.border>h4+pre+p+pre
+                      
+            # Vérifier si la chaîne contient un mot particulier 
+            echo "<br><br>";
 
-                        // Modifier un caractère de la chaine
-                        $maChaine[0] = "B"; // je change le b minuscule en B majuscule
-                        echo $maChaine . "<br>";
+            var_dump(str_contains($maChaine, 'JS')); // les paramètres : la variable qui contient la chaîne et le mot à vérifier dans la chaîne // sensible à la casse 
+            // Le résultat est un boolean true ou false (trouvé ou pas trouvé)
 
-                        // Extraire une partie de la chaine de caractère
-                        $nvlChaine = substr($maChaine, 0, 9); // Cette fonction prend en paramètre la variable, le point de départ et la longueur qu'on souhaite obtenir
-                        echo $nvlChaine . "<br>";
+
+
+
+                        
+
+                        
 
                         //Exercice 
                         // Récupérez une partie du texte (de l'indice 0 à l'indice 40) et  remplacer la partie enlever avec ce morceau de code :
@@ -66,36 +168,13 @@ require_once ("inc/header.inc.php");
 
                         # /!\ Attention : Les espaces sont des caractères dans la chaine et les accents circonflexe sont considérés comme 2 caractères.
 
-                        # récupérer la position d'un caractère dans une chaine de caractère :
-                        echo "<br><br>";
+                                       
 
-                        echo 'La position de la lettre H dans ma phrase est : ' . strpos($maChaine, 'H'). '<br>';
+                       
 
-                        // Attention ! La fonction est case sensitive. Elle fait attention à la casse des lettres : si je mets la lettre h en minuscule, il ne nous affiche rien.
+                       
 
-                        var_dump(strpos($maChaine, 'h'));
-
-                        # Récuperer la taille d'une chaîne de caractère
-                        echo "<br><br>";
-
-                        echo strlen($maChaine);
-
-                        # Remplacer une partie de la chaîne
-                        echo "<br><br>";
-
-                        $maChaine = str_replace('PHP', 'JS', $maChaine); // Les paramètres de la fonction : la chaîne de caractère à changer, la chaîne de caractère qui remplace, et a variable à manipuler
-                        echo $maChaine .'<br>'; 
-                        // Ici aussi la fonction est sensible à la casse on ne change pas la valeur si y'en as une différence entre la valeur cherché et stocké
-                        // il existe un autre fonction qui ne fait pas de distinction entre les lettres majuscule et miniscule dans la chaîne 
-                        $maChaine = str_ireplace('bonjour', 'Hello', $maChaine);
-                        echo $maChaine .'<br>'; 
-
-                        # Varifier si la chaîne contient un mot particulier 
-                        echo "<br><br>";
-
-                        var_dump(str_contains($maChaine, 'JS')); // les paramètres : la variable qui contient la chaîne et le mot à vérifier dans la chaîne // sensible à la casse 
-                        // Le résiltat est un boolean true ou false (trouvé ou pas trouvé)
-
+                      
                         echo '<br>';
                         # Vérifier si la chaîne commence par ce que vous notez dans les paramètres
                         echo "<br><br>";

@@ -1,7 +1,6 @@
 
 <?php
-  require_once "../inc/functions.inc.php";
-  require_once "../inc/header.inc.php";
+  require_once "../inc/functions.inc.php";  
 
   $users = allUsers();
   // debug($users);
@@ -10,8 +9,8 @@
       
     if ($_GET['action'] == 'delete' && !empty($_GET['id_user'])) {      
 
-      $id_user = htmlentities($_GET['id_user']);
-      deleteUser($id_user);
+      $idUser = htmlentities($_GET['id_user']);
+      deleteUser($idUser);
 
       /*
         htmlentities :convertit tous les caractères applicables en entités HTML. Cela inclut non seulement les caractères spéciaux comme htmlspecialchars, mais aussi d'autres caractères qui ont des entités HTML (comme les caractères accentués) exemple.
@@ -19,14 +18,28 @@
         é devient &eacute;
         © devient &copy;
       */
+    }
 
+    if ($_GET['action'] == 'update' && !empty($_GET['id_user'])) {      
+
+      $idUser = htmlentities($_GET['id_user']);
+      $user = showUser($idUser);
+
+      if ( $user['role'] == 'ROLE_ADMIN') {
+
+        modifyRole($idUser, 'ROLE_USER');      
+      }
+      else {
+        modifyRole($idUser, 'ROLE_ADMIN');
+      }
 
     }
 
+    header('location:users.php');
 
   }
 
-
+  require_once "../inc/header.inc.php";
 ?>
 
 <div class="d-flex flex-column m-auto mt-5 table-responsive">
@@ -73,7 +86,11 @@
           <td><?= $user['country']?></td>
           <td><?= $user['role']?></td>
           <td class="text-center"><a href="?action=delete&id_user=<?= $user['id_user']?>"><i class="bi bi-trash3"></i></a></td>
-          <td></td>
+          <td class="text-center">
+            <a class="btn btn-danger" href="?action=update&id_user=<?= $user['id_user']?>">
+              <?= $user['role'] == "ROLE_ADMIN" ? "Role_user" : "Role_admin" ?>
+            </a>
+          </td>
         </tr>
       <?php
         }
@@ -82,8 +99,6 @@
   </table>
 
 </div>
-
-
 
 <?php
   require_once "../inc/footer.inc.php";

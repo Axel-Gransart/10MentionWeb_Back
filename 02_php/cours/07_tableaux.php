@@ -4,6 +4,11 @@ $titreH1='Les Tableaux en PHP';
 $paragraphe=null;
 include "inc/header.inc.php";
 ?>
+<header class="p-5 m-4 bg-light rounded-3 border ">
+  <section class="container py-5">
+    <h1 class="display-5 text-center fw-bold">Les tableaux en PHP</h1>  
+  </section>
+</header>
 <main class="container px-5 border border-dark mt-5">
   <div class="row">
     <h2 class="text-center my-5">1- Déclaration de tableaux</h2>
