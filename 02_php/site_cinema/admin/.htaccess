@@ -1,0 +1,5 @@
+
+  AuthName "Dossier gestion admin"
+  AuthType Basic
+  AuthUserFile C:\laragon\www\10MentionWeb_Back\02_php\site_cinema\admin\.htpasswd
+  Require valid-user

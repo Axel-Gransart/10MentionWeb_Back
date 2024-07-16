@@ -23,7 +23,7 @@
   <header>
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container-fluid">
-        <h1><a class="navbar-brand" href="#">Movies</a></h1>
+      <h1><a class="navbar-brand" href="<?=RACINE_SITE?>index.php">M <img src="<?=RACINE_SITE?>assets/img/logo.png" alt="" > VIES</a></h1>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -37,9 +37,19 @@
                 Catégories
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Science Fiction</a></li>
-                <li><a class="dropdown-item" href="#">Aventure</a></li>
+                <?php
+
+                  $categories = allCat();
+
+                  foreach ($categories as $key => $cat) {
+                  //$variable as $key => $value
+                ?>                
+                  <li>
+                    <a class="dropdown-item" href="<?= RACINE_SITE?>index.php?id_category=<?= $cat['id_category']?>"><?= ucfirst(html_entity_decode($cat['name']))?></a>
+                  </li>                
+                <?php               
+                  }
+                ?>
               </ul>
             </li>
             <?php
@@ -57,7 +67,7 @@
               else {
             ?>
               <li class="nav-item">
-                <a class="nav-link" href="<?=RACINE_SITE?>profil.php">Compte</a>
+                <a class="nav-link" href="<?=RACINE_SITE?>profil.php">Compte <sup class="badge rounded-pill text-bg-primary"><?= $_SESSION['user']['pseudo'] ?></sup></a>
               </li>
 
               <?php
@@ -68,6 +78,7 @@
                   <ul class="dropdown-menu">
                       <li><a class="dropdown-item text-dark fs-4" href="<?=RACINE_SITE?>admin/categories.php">Catégories</a></li>
                       <li><a class="dropdown-item text-dark fs-4" href="<?=RACINE_SITE?>admin/films.php">Films</a></li>
+                      <li><a class="dropdown-item text-dark fs-4" href="<?=RACINE_SITE?>admin/gestion_film.php">Gestion des films</a></li>
                       <li><a class="dropdown-item text-dark fs-4" href="<?=RACINE_SITE?>admin/users.php">utilisateurs</a></li>
                   </ul>
                 </li>
@@ -79,7 +90,7 @@
                 <a class="nav-link" href="?action=deconnexion">Déconnexion</a>
               </li>
             <?php     
-              debug($_GET['action']);          
+              //debug($_GET['action']);          
               }
             ?>
             <li class="nav-item">
@@ -90,4 +101,4 @@
       </div>
     </nav>
   </header>
-  <main>
+

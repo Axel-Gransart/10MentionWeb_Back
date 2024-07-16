@@ -1,6 +1,11 @@
 <?php
   require_once "inc/functions.inc.php";
-  require_once "inc/header.inc.php";
+
+  // Si l'utilisateur est connecté, je l'empêche d'aller sur la page authentification et je le redirige sur la page profil
+
+  if (!empty($_SESSION['user'])) {
+    header('location:profil.php');
+  }
   
   $info = "";
 
@@ -73,6 +78,7 @@
     }
   }
 
+  require_once "inc/header.inc.php";
 ?>
 
 <main style="background:url(assets/img/5818.png) no-repeat; background-size: cover; background-attachment: fixed;">

@@ -38,9 +38,23 @@
     header('location:users.php');
 
   }
-
+  
+  // Gestion de l'accessibilité des pages admin
+  
+  if (empty($_SESSION['user'])) {
+    
+    header('location:' . RACINE_SITE . 'authentification.php');
+  }
+  else {
+    
+    if ($_SESSION['user']['role'] == 'ROLE_USER') {
+      
+      header('location:' . RACINE_SITE . 'index.php');      
+    }
+  }
+  
   require_once "../inc/header.inc.php";
-?>
+  ?>
 
 <div class="d-flex flex-column m-auto mt-5 table-responsive">
   <!-- tableau pour afficher tout les utilisateurs avec des boutons de suppression et de modification -->

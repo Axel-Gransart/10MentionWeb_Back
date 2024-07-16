@@ -231,6 +231,8 @@ table, .sidebarre {
   font-size: 1.8rem;
 }
 
+
+
 /*
 input{
   outline: 1px solid var(--red) !important;
@@ -240,10 +242,8 @@ input{
 /* Footer */
 
 footer{
-
   background-color: var(--black);
-  height: 100px !important ;
-
+  height: 100px !important;
 }
 
 

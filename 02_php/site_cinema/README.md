@@ -87,3 +87,51 @@ Pour protéger votre application contre les attaques XSS, suivez ces pratiques :
 # Conclusion
 
 XSS est une vulnérabilité sérieuse, mais en suivant les bonnes pratiques de sécurité et en utilisant les outils et techniques appropriés, vous pouvez protéger votre application contre ces attaques.
+
+
+########################################################################################################################################
+
+# Récupération du chemin absolu à mettre dans le fichier .htaccess
+- Créer un fichier path.php au même niveau que le fichier .htaccess dans l'arborescence de notre dossier
+- Appeler la fonction prédéfinie realpath() et on lui passe comme argument le nom du fichier 'path.php'
+
+# Creation du fichier .htacess
+1 - Les lignes de codes à mettre dans ce fichier
+
+            AuthName
+            AuthType Basic
+            AuthUserFile
+            Require valid-user
+
+2 - Explication de chaque ligne
+    AuthName :  C'est le message qui vas apparaitre lorsqu'on demande à l'utilisateur de s'authentifier
+    AuthType Basic : Le type d'authentification : basic avec un nom d'utilisateur et un mot de passe
+    AuthUserFile : Le chemin absolu qui vas mener à notre fichier .htpasswd
+    Require valid-user : il faut que l'utilisateur soit inscrit dans le fichier .htpasswd
+
+
+# Changement du chemin dans AuthUserFile
+Il faut mettre dans le chemin absolu le fichier .htpasswd
+
+# Hasher le mot de passe
+https://hellotools.org/fr/generer-crypter-mot-de-passe-pour-fichier-htpasswd
+
+https://www.infowebmaster.fr/outils/crypter-htpasswd.php
+
+copier le mot de passe hasher dans le fichier .htpasswd sou la fomre suivante
+
+                nomDeUutilisateur:MotDePasseHasher
+
+
+### Protéger un seul fichier avec .htacess
+Afn de protéger un fichier on met les mêmes ligne de code dans une balise FilesMatch avec le nom du fichier à protéger
+
+
+            <FilesMatch "chemin.php">
+
+                AuthName "Page d'administration protégée"
+                AuthType Basic
+                AuthUserFile "C:\xampp\htdocs\10mentionsweb\Evry_2023\05_php\site_portfolio\admin\.htpasswd"
+                Require valid-user
+
+            </FilesMatch>

@@ -1,14 +1,15 @@
 <?php
   require_once "inc/functions.inc.php";
-  require_once "inc/header.inc.php";
-
+  
   debug($_SESSION['user']);
-  debug(viewUser(3));
+  // debug(viewUser(3));
+  require_once "inc/header.inc.php";
 ?>
 
+<main>
 
 
-
+</main>
 
 <?php
 

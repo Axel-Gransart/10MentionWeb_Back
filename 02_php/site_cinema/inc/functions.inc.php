@@ -5,8 +5,16 @@
 
     session_start();
 
+    
+   /*
+                          ╔═════════════════════════════════════════════╗
+                          ║                                             ║
+                          ║             FONCTIONS GLOBALES              ║
+                          ║                                             ║
+                          ╚═════════════════════════════════════════════╝ */
 
-    ///////////////////////////////////////////////////// constante pour définir le chemin du site ///////////////////////////////////////
+
+    ################### constante pour définir le chemin du site ###################
 
 
 
@@ -34,6 +42,17 @@
               </div>";
     }
 
+    ################### Fonction mise en tableau d'une string ###################
+
+    function stringToArray(string $string ) :array{
+    
+      $array = explode('/', trim($string, '/')); 
+      // Je transforme ma chaîne de caractère en tableau et je supprime les '/' autour de la chaîne de caractère 
+      return $array; // ma fonction retourne un tableau
+  
+  }
+  
+
 
     ################### Fonction pour la déconnexion ###################
 
@@ -41,7 +60,7 @@
       if (isset($_GET['action']) && $_GET['action'] == "deconnexion") {
         
         unset($_SESSION['user']);
-        header('location:index.php');
+        header('location:'. RACINE_SITE . 'index.php');
       }
     }
 
@@ -196,9 +215,18 @@
   // Création de la clé étrangère dans la table films
   //foreignKey('films', 'category_id', 'categories', 'id_category');
 
+
+   /*
+                          ╔═════════════════════════════════════════════╗
+                          ║                                             ║
+                          ║                UTILISATEURS                 ║
+                          ║                                             ║
+                          ╚═════════════════════════════════════════════╝ */
+
+
   ################### Fonctions du CRUD pour les utilisateurs ###################
 
-  // Inscription 
+  ################### insertion de l'utilisateur dans la BDD ###################
 
   function InscriptionUSers(string $lastName, string $firstName, string $pseudo, string $email, string $phone, string $mdp, string $civility, string $birthday, string $address, string $zip, string $city, string $country) : void {
 
@@ -353,7 +381,7 @@
   }
 
   
-  //////////////////////////////// fonction pour supprimer un utilisateur //////////////////////////////////////////
+  ################### fonction pour supprimer un utilisateur ###################
 
   function deleteUser(int $id_user) :void{
 
@@ -369,7 +397,7 @@
     ));
   }
 
-   //////////////////////////////// fonction pour modifier le role d'un utilisateur //////////////////////////////////////////
+   ################### fonction pour modifier le role d'un utilisateur ###################
 
    function modifyRole(int $id_user, string $role) :void {
 
@@ -386,12 +414,20 @@
     ));
   }
 
+    /*
+                          ╔═════════════════════════════════════════════╗
+                          ║                                             ║
+                          ║                  CATEGORIES                 ║
+                          ║                                             ║
+                          ╚═════════════════════════════════════════════╝ */
 
-  //////////////////////////////// Fonctions du CRUD pour les catégories ////////////////////////////////
 
-  // insertion categories 
+  ################### Fonctions du CRUD pour les catégories ###################
 
-  function InsertCat(string $name, string $description) : void {
+
+  ################### insertion de la categorie dans la BDD ###################
+
+  function InsertCat(string $nameCat, string $description) : void {
    
     $cnx = connexionBDD();
 
@@ -402,11 +438,26 @@
     $request = $cnx->prepare($sql);  
   
     $request->execute(array(
-      ":name" => $name,
+      ":name" => $nameCat,
       ":description" => $description
     ));       // execute() permet d'executer toute la requête préparée avec prepare()
   }
-
+  
+  ################### Fonctions pour récupérer toute les catégories de la BDD ###################
+  
+  function allCat() {
+    
+    $cnx = connexionBDD();
+    $sql = "SELECT * FROM categories";
+    
+    $request = $cnx->query($sql);
+    
+    $result = $request->fetchAll();
+    // fetchAll() récupère tout les résultats dans la requête et les sort sous forme d'un tableau à 2 dimensions
+    
+    return $result;
+  }
+  
   ################### Fonctions pour vérifier si une catégorie existe dans la BDD ###################
 
   function checkCat(string $name) : mixed {
@@ -423,29 +474,27 @@
     $result = $request->fetch(PDO::FETCH_ASSOC);
      
      return $result;
-
   }
 
-
-
-  ################### Fonctions pour récupérer toute les catégories de la BDD ###################
-
-  function allCat() {
+  function checkCatId(string $id_category) : mixed {
 
     $cnx = connexionBDD();
-    $sql = "SELECT * FROM categories";
+    $sql = "SELECT * FROM categories WHERE id_category = :id_category";
 
-    $request = $cnx->query($sql);
+    $request = $cnx->prepare($sql);
 
-    $result = $request->fetchAll();
-    // fetchAll() récupère tout les résultats dans la requête et les sort sous forme d'un tableau à 2 dimensions
-      
-    return $result;
+    $request->execute(array(
+      ':id_category' => $id_category
+    ));
+
+    $result = $request->fetch(PDO::FETCH_ASSOC);
+     
+     return $result;
   }
 
-   //////////////////////////////// fonction pour supprimer une catégorie //////////////////////////////////////////
+   ################### fonction pour supprimer une catégorie ###################
 
-    function deleteCat(int $id_category) :void{
+    function deleteCat(int $id_cat) :void{
 
       $cnx = connexionBDD();
 
@@ -455,29 +504,273 @@
 
       $request->execute(array(
 
-        ":id_category"=>$id_category
+        ":id_category"=>$id_cat
       ));
+
     }
 
-    //////////////////////////////// fonction pour modifier une catégorie //////////////////////////////////////////
+    ################### fonction pour modifier une catégorie ###################
 
-    function modifyCat(int $id_category) :void{
+    function modifyCat(int $id_category, string $name, string $description) : void {
 
     $cnx = connexionBDD();
 
-    $sql = "UPDATE categories SET description = :description WHERE id_category = :id_category";
+    $sql = "UPDATE categories SET  name = :name, description = :description WHERE id_category = :id_category";
 
     $request = $cnx->prepare($sql);
 
     $request->execute(array(
 
-      ":id_category"=>$id_category
+      ":id_category"=>$id_category,
+      ":name"=>$name,
+      ":description"=>$description
     ));
   }
 
 
+  
+    /*
+                          ╔═════════════════════════════════════════════╗
+                          ║                                             ║
+                          ║                    FILMS                    ║
+                          ║                                             ║
+                          ╚═════════════════════════════════════════════╝ */
 
- //////////////////////////////// fonction pour récupérer un seul utilisateur //////////////////////////////////////////
+
+  ################### Fonctions du CRUD pour les films ###################
+
+
+  ################### insertion du film dans la BDD ###################
+
+  function InsertMovie (int $category_id, string $title, string $director, string $actors, string $ageLimit, string $duration, string $synopsis, string $date, string $image, float $price, int $stock) : void {
+   
+
+    $data = [
+      "category_id" => $category_id,
+      "title" => $title,
+      "director" => $director,
+      "actors" => $actors,
+      "ageLimit" => $ageLimit,
+      "duration" => $duration,
+      "synopsis" => $synopsis,
+      "date" => $date,
+      "image" => $image,
+      "texte_alternatif" => $title,
+      "price" => $price,
+      "stock" => $stock
+  ];
+
+    // Pour échapper les données et les traiter contre les failles JS (XSS)
+
+  foreach ($data as $key => $value) {
+    $data[$key] = htmlentities($value);
+  }
+  
+    $cnx = connexionBDD();
+
+    $sql =  "INSERT INTO films
+            ( category_id, title, director, actors, ageLimit, duration, synopsis, date, image, texte_alternatif, price, stock) VALUES ( :category_id, :title, :director, :actors, :ageLimit, :duration, :synopsis, :date, :image, :texte_alternatif, :price, :stock) 
+            ";
+
+    $request = $cnx->prepare($sql);
+  
+    $request->execute(array(
+      ":category_id" => $data['category_id'],
+      ":title" => $data['title'],
+      ":director" => $data['director'],
+      ":actors" => $data['actors'],
+      ":ageLimit" => $data['ageLimit'],
+      ":duration" => $data['duration'],
+      ":synopsis" => $data['synopsis'],
+      ":date" => $data['date'],
+      ":image" => $data['image'],
+      "texte_alternatif" => 'Affiche du film ' . $data['texte_alternatif'],
+      ":price" => $data['price'],
+      ":stock" => $data['stock']
+    ));      
+  }
+  
+  ################### Fonctions pour récupérer tout les films de la BDD ###################
+  
+  function allMovies() : mixed {
+    
+    $cnx = connexionBDD();
+    $sql = "SELECT * FROM films";
+    
+    $request = $cnx->query($sql);
+    
+    $result = $request->fetchAll();
+    // fetchAll() récupère tout les résultats dans la requête et les sort sous forme d'un tableau à 2 dimensions
+    
+    return $result;
+  }
+
+   ################### Fonctions pour récupérer tout les films de la BDD dans l'ordre alphabetique ###################
+
+  function allMoviesOrderAlpha() : mixed {
+    
+    $cnx = connexionBDD();
+    $sql = "SELECT * FROM films ORDER BY title ASC";
+    
+    $request = $cnx->query($sql);
+    
+    $result = $request->fetchAll();
+    // fetchAll() récupère tout les résultats dans la requête et les sort sous forme d'un tableau à 2 dimensions
+    
+    return $result;
+  }
+
+   ################### Fonctions pour récupérer les films de la BDD suivant leur catégorie ###################
+
+  function filmsByCategory($id) : mixed {
+
+    $cnx = connexionBDD();
+    $sql = "SELECT * FROM films WHERE category_id = :id";
+    
+    $request = $cnx->prepare($sql);
+
+    $request->execute(array(
+
+      ":id"=>$id
+    ));
+
+    $result = $request->fetchAll();
+      
+    return $result;
+  }
+
+   ################### fonction pour supprimer un film ###################
+
+   function deleteMovie(int $id_film) :void{
+
+    $cnx = connexionBDD();
+
+    $sql = "DELETE FROM films WHERE id_film = :id_film";
+
+    $request = $cnx->prepare($sql);
+
+    $request->execute(array(
+
+      ":id_film"=>$id_film
+    ));
+
+  }
+
+  ################### Fonctions pour vérifier si un film existe dans la BDD ###################
+
+  function verifFilm(string $title, string $date) : mixed {
+
+    $cnx = connexionBDD();
+    
+    $sql = "SELECT * FROM films WHERE title = :title AND date = :date"; // : est appelé marqueur, paramètres nommés ou paramètres positionnels
+
+    $request = $cnx->prepare($sql);
+
+    $request->execute(array(
+      ':title' => $title,
+      ':date' => $date
+    ));
+
+    $result = $request->fetch();
+    
+    return $result;
+  }
+
+  ################### fonction pour modifier un film ###################
+
+  function modifyMovie(int $id_film, int $category_id, string $title, string $director, string $actors, string $ageLimit, string $duration, string $synopsis, string $date, string $image, float $price, int $stock) : void {
+
+    $cnx = connexionBDD();
+
+    $sql = "UPDATE films SET category_id = :category_id, title = :title, director = :director, actors = :actors, ageLimit = :ageLimit, duration = :duration, synopsis = :synopsis, date = :date, image = :image, price = :price, stock = :stock WHERE id_film = :id_film";
+
+    $request = $cnx->prepare($sql);
+
+    $request->execute(array(
+      ":id_film"=>$id_film,
+      ":category_id" => $category_id,
+      ":title" => $title,
+      ":director" => $director,
+      ":actors" => $actors,
+      ":ageLimit" => $ageLimit,
+      ":duration" => $duration,
+      ":synopsis" => $synopsis,
+      ":date" => $date,
+      ":image" => $image,
+      ":price" => $price,
+      ":stock" => $stock   
+    ));
+
+  }
+
+
+  ################### Fonctions pour afficher un film via son id ###################
+
+  function showFilmViaId( int $id ) {
+
+    $cnx = connexionBDD();
+    $sql = "SELECT * FROM films WHERE id_film = :id";
+
+    $request = $cnx->prepare($sql);
+
+    $request->execute(array(
+      ":id"=>$id
+    ));
+
+    $result = $request->fetch();
+      
+    return $result;
+  }
+
+
+
+
+ /*
+                          ╔═════════════════════════════════════════════╗
+                          ║                                             ║
+                          ║                 PAGE INDEX                  ║
+                          ║                                             ║
+                          ╚═════════════════════════════════════════════╝ */
+
+  function filmByDate() : mixed {
+
+    $cnx = connexionBDD();
+    $sql = "SELECT * FROM films ORDER BY date DESC LIMIT 6";
+
+    $request = $cnx->query($sql);
+    
+    $result = $request->fetchAll();
+      
+    return $result;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ################### fonction pour récupérer un seul utilisateur ###################
 
 
 
