@@ -1,4 +1,3 @@
-
 <?php
   require_once "../inc/functions.inc.php";
 
@@ -18,31 +17,41 @@
     }
   }
 
-  if (isset($_GET) && isset($_GET['action']) && isset($_GET['id_category']) && !empty($_GET['action']) && !empty($_GET['id_category'])) {
-  
-    $name = strtolower($name);
-    $name = htmlentities($name);
-    $description = htmlentities($description);
+ // Supression et modification d'une catégorie
 
-      if ($_GET['action'] == 'update' && !empty($_GET['id_category']) ) {
+if (isset($_GET) && isset($_GET['action']) && isset($_GET['id_category']) && !empty($_GET['action']) && !empty($_GET['id_category'])) {
 
-        
-        modifyCat( $id_category, $name, $description);
-        
-        header('location:categories.php');
-        
+  $idCategory = htmlentities($_GET['id_category']);
+
+  if(is_numeric($idCategory)){
+
+    $category = checkCatId($idCategory);
+
+    if($category){
+
+      if ($_GET['action'] == 'delete') {
+
+        deleteCat($idCategory);
+
       }
-      if ($_GET['action'] == 'delete' && !empty($_GET['id_category'])) {
-        
-        $id_category = htmlentities($_GET['id_category']);
-
-        deleteCat($id_category);
+      if ($_GET['action'] != 'update') {
 
         header('location:categories.php');
-        
-      }   
 
-  } 
+      }
+    }
+    else {
+        header('location:categories.php');
+    }
+  }
+  else {
+
+    header('location:categories.php');
+
+  }
+}
+
+
 
   if (!empty($_POST)) {    
 
@@ -79,18 +88,33 @@
       }  
 
       elseif (empty($info)) {
+        // on vérifie si la catégorie existe dans la BDD
 
+        // $name = strtolower($name);
+        $name = htmlentities($name);
+        $categoryBdd = checkCat($name);
+        // debug($name);
 
-        $catExist = checkCat($name);
-        
-        
-          if (is_numeric($id_category)) {                        
+        if ($categoryBdd) {
 
-            if ($catExist) {
-              $info = alert("Cette catégorie existe déjà", "danger");
-            }                                  
-          }          
-               
+          $info .= alert("la catégorie existe déjà", "danger");
+        }
+        else {
+
+          $description = htmlentities($description);
+
+          if(isset($_GET) && isset($_GET['action']) == 'update' && !empty($_GET['id_category'])) {
+
+            $id_category = htmlentities($_GET['id_category']);
+            modifyCat($id_category, $name, $description);
+            header('location:categories.php');
+          }
+          else {
+              
+            InsertCat($name, $description);
+
+          }
+        }        
       }
     }
   }
@@ -120,50 +144,54 @@
         </div>
         <div class="col-12 mb-5">
           <label for="description" class="form-label">description</label>
-          <textarea type="text" class="form-control fs-5" id="description" name="description"><?=isset($category)? $category['description'] : '' ?></textarea>
-        </div>        
+          <textarea type="text" class="form-control fs-5" id="description"
+            name="description"><?=isset($category)? $category['description'] : '' ?></textarea>
+        </div>
         <div class="d-flex flex-column justify-content-center">
-          <button class="w-75 mx-auto btn btn-danger btn-lg fs-5" type="submit"><?=isset($category) ? 'Modifier la catégorie' : 'Ajouter une catégorie' ?></button>
+          <button class="w-75 mx-auto btn btn-danger btn-lg fs-5"
+            type="submit"><?=isset($category) ? 'Modifier la catégorie' : 'Ajouter une catégorie' ?></button>
         </div>
       </div>
     </form>
   </div>
   <div class="d-flex flex-column m-auto mt-5 table-responsive">
-  <!-- tableau pour afficher tout les utilisateurs avec des boutons de suppression et de modification -->
-  <h2 class="text-center fw-bolder mb-5 text-danger">Liste des catégories</h2>
-  <table class="table table-dark table-bordered mt-5">
-    <thead>
-      <tr>
-        <!-- th*5 -->
-        <th>ID</th>
-        <th>Nom</th>
-        <th>Description</th>        
-        <th>Supprimer</th>
-        <th>Modifier</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
+    <!-- tableau pour afficher tout les utilisateurs avec des boutons de suppression et de modification -->
+    <h2 class="text-center fw-bolder mb-5 text-danger">Liste des catégories</h2>
+    <table class="table table-dark table-bordered mt-5">
+      <thead>
+        <tr>
+          <!-- th*5 -->
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Description</th>
+          <th>Supprimer</th>
+          <th>Modifier</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
         foreach ($categories as $key => $cat) {
           //$variable as $key => $value
       ?>
         <tr>
           <td><?= $cat['id_category']?></td>
-           <td><?= html_entity_decode(ucfirst($cat['name']))?></td>
-           <!-- ucfirst() permet de mettre la première lettre en majuscule -->
-           <td><?=substr(html_entity_decode($cat['description']), 0, 100 ) . " ..." ?></td>
-           <!--Convertit les entités HTML à leurs caractères correspondant -->
+          <td><?= html_entity_decode(ucfirst($cat['name']))?></td>
+          <!-- ucfirst() permet de mettre la première lettre en majuscule -->
+          <td><?=substr(html_entity_decode($cat['description']), 0, 100 ) . " ..." ?></td>
+          <!--Convertit les entités HTML à leurs caractères correspondant -->
 
-          <td class="text-center"><a href="?action=delete&id_category=<?= $cat['id_category']?>"><i class="bi bi-trash3"></i></a></td>
-          <td class="text-center"><a href="?action=update&id_category=<?= $cat['id_category']?>"><i class="bi bi-pen"></i></a></td>
+          <td class="text-center"><a href="?action=delete&id_category=<?= $cat['id_category']?>"><i
+                class="bi bi-trash3"></i></a></td>
+          <td class="text-center"><a href="?action=update&id_category=<?= $cat['id_category']?>"><i
+                class="bi bi-pen"></i></a></td>
         </tr>
-      <?php
+        <?php
         }
       ?>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
 
-</div>
+  </div>
 
 
 </main>

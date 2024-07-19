@@ -414,6 +414,31 @@
     ));
   }
 
+   ################### fonction pour modifier les éléments d'un utilisateur ###################
+
+   function modifyUSer(string $lastName, string $firstName, string $pseudo, string $email, string $phone, string $civility, string $birthday, string $address, string $zip, string $city, string $country) : mixed {
+
+    $cnx = connexionBDD();
+
+    $sql = "UPDATE users SET  lastName = :lastName, firstName = :firstName, pseudo = :pseudo, email = :email, phone = :phone, civility = :civility, birthday = :birthday, address = :address, zip = :zip, city = :city, country = :country";
+
+    $request = $cnx->prepare($sql);
+
+    $request->execute(array(
+      'lastName' => $lastName,
+      'firstName' => $firstName,
+      'pseudo' => $pseudo,      
+      'email' => $email,
+      'phone' => $phone,
+      'civility' => $civility,
+      'birthday' => $birthday,
+      'address' => $address,
+      'zip' => $zip,
+      'city' => $city,
+      'country' => $country
+    ));
+  }
+
     /*
                           ╔═════════════════════════════════════════════╗
                           ║                                             ║

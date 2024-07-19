@@ -28,16 +28,14 @@
     }
   }
 
-
   $categories = allCat();
    
   $info = "";
 
-
-  if (!empty($_POST)) {    
-
+  if (!empty($_POST)) {
 
     ################### On vérifie si un champs est vide ###################
+
     $verif = true;
     
     foreach ($_POST as $key => $value) {
@@ -64,8 +62,6 @@
       // copy() prend deux arguments : le chemin source (le fichier temporaire) et le chemin de destination.
       copy($_FILES['image']['tmp_name'], '../assets/img/' . $image); // $_FILES['image']['tmp_name'] contient le chemin temporaire où le fichier est stocké après le téléchargement.
     }
-
-
     
     if (!$verif || empty($image)) { // !$verif revient à ($verif == false)
       // Si la variable $verif passe en false ou si la variable $image est vide, j'affiche le message d'erreur ci dessous
@@ -86,9 +82,7 @@
 
         $info .= alert("L'image n'est pas valide","danger");
 
-
       }
-
 
       // On récupère les valeurs de nos champs et on les stocke dans des variables
       $category_id = trim($_POST["categories"]);
@@ -122,16 +116,16 @@
       if (!isset($director) || strlen($director) < 2 || preg_match($regex_chiffre, $director) ) {
 
         $info .= alert("Le champ Réalisateur n'est pas valide", "danger");
-      }  
+      }
       
       if(!isset($actors) || strlen($actors) < 3 || preg_match($regex_chiffre, $actors) || !preg_match($regex_acteurs, $actors) ){ // valider que l'utilisateur a bien inséré le symbole '/' : chaîne de caractères qui contient au moins un caractère avant et après le symbole /.
 
         $info .= alert("Le champ acteurs n'est pas valide", "danger");
-      }      
+      }
     
       if (!isset($ageLimit) || !in_array($ageLimit, ["3", "7", "10", "12", "16"])) {
         $info .= alert("L'age limite n'est pas valide", "danger");
-      }      
+      }
 
       if (!isset($duration) ) {
 
