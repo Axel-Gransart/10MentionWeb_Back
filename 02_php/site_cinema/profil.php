@@ -1,6 +1,11 @@
 <?php
   require_once "inc/functions.inc.php";
 
+  if (!empty($_SESSION['user'])) {
+    header('location:authentification.php');
+  }
+  
+
   if (!empty($_POST)) {    
 
     // On vérifie si un champs est vide

@@ -120,9 +120,7 @@ if (isset($_GET) && isset($_GET['action']) && isset($_GET['id_category']) && !em
   }
 
   $categories = allCat();
-  // debug($users);
-
- 
+  // debug($users); 
 
   require_once "../inc/header.inc.php";
 ?>

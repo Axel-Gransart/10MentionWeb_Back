@@ -4,7 +4,7 @@
   // Si l'utilisateur est connecté, je l'empêche d'aller sur la page authentification et je le redirige sur la page profil
 
   if (!empty($_SESSION['user'])) {
-    header('location:profil.php');
+    header('location:authentification.php');
   }
   
   $info = "";

@@ -1,6 +1,11 @@
 <?php
   require_once "inc/functions.inc.php";  
 
+  if (empty($_SESSION['user'])) {
+    header('location:authentification.php');
+  }
+  
+
   if (isset($_GET) && isset($_GET['action']) && isset($_GET['id_film'])) {
       
     if ($_GET['action'] == 'visu' && !empty($_GET['id_film'])) {
@@ -12,7 +17,7 @@
       $category = checkCatId($movie['category_id']);
       $categoryName = $category['name'];
 
-      $actors= stringToArray($movie['actors']);
+      $actors= stringToArray(html_entity_decode($movie['actors']));
 
       $date_time = new DateTime($movie['duration']); // nous créeons un nouvel objet DateTime en passant la valeur de l'input de type time  en tant que paramètre
       $duration = $date_time->format('H:i');// Nous utilisons ensuite la méthode format() pour extraire l'heure et les minutes au format 'H:i'
@@ -36,7 +41,7 @@
       <a value="back" onClick="window.history.back()"><i class="bi bi-arrow-left-circle-fill"></i></a>
     </div>
     <div class="cardDetails row mt-5">
-      <h2 class="text-center mb-5"></h2>
+      <h2 class="text-center mb-5"><?= html_entity_decode(ucfirst($movie['title']))?></h2>
       <div class="col-12 col-xl-5 row p-5">
         <img src="<?=RACINE_SITE ."assets/img/" . $movie['image']?>" alt="<?=$movie['texte_alternatif']?>">
         <div class="col-12 mt-5">
@@ -50,13 +55,12 @@
             <select name="quantity" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
               <!-- Je créé dynamiquement la quantité sélectionnable dans la limite du stock -->
               <?php
-                for ($i = 1; $i < $movie['stock']; $i++ ) { 
+                for ($i = 1; $i <= $movie['stock']; $i++ ) :
               ?>
-                <option><?= $i?></option>
+                <option value="<?= $i?>"><?= $i?></option>
               <?php
-                }
+                endfor;
               ?>
-
             </select>
             <!-- <a href="boutique/panier.php?id_film=<?//=$film["id_film"] ?>" class="btn w-100 m-auto">Ajouter au Panier</a>  -->
             <input class="btn btn-outline-danger mt-3 w-100" type="submit" value="Ajouter au panier" name="ajout_panier"
