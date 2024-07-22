@@ -1,7 +1,7 @@
 <?php
   require_once "inc/functions.inc.php";
 
-  if (!empty($_SESSION['user'])) {
+  if (empty($_SESSION['user'])) {
     header('location:authentification.php');
   }
   

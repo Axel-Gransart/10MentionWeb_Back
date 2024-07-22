@@ -47,11 +47,7 @@
         <div class="col-12 mt-5">
           <form action="boutique/panier.php" method="post" enctype="multipart/form-data" class="w-50 m-auto row justify-content-center p-5">
           <!-- Dans le formulaire d'ajout au panier, ajoutez des champs cachés pour chaque information que vous souhaitez conserver du film -->
-            <input type="hidden" name="id_film" value="<?= $movie['id_film'] ?>">
-            <input type="hidden" name="title" value="<?= html_entity_decode(ucfirst($movie['title']))?>">
-            <input type="hidden" name="price" value="<?= html_entity_decode($movie['price']) ?>">
-            <input type="hidden" name="stock" value="<?= html_entity_decode($movie['stock']) ?>">
-            <input type="hidden" name="image" value="<?=RACINE_SITE ."assets/img/" . $movie['image']?>">
+            <input type="hidden" name="id_film" value="<?= $movie['id_film'] ?>">            
             <select name="quantity" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
               <!-- Je créé dynamiquement la quantité sélectionnable dans la limite du stock -->
               <?php
@@ -62,9 +58,7 @@
                 endfor;
               ?>
             </select>
-            <!-- <a href="boutique/panier.php?id_film=<?//=$film["id_film"] ?>" class="btn w-100 m-auto">Ajouter au Panier</a>  -->
-            <input class="btn btn-outline-danger mt-3 w-100" type="submit" value="Ajouter au panier" name="ajout_panier"
-              id="addCart">
+            <button class=" m-auto btn btn-danger btn-lg fs-5" type="submit">Ajouter au panier</button>            
             <!-- au moment du click j'initalise une session de panier qui sera récupérer dans le fichier panier.php -->
           </form>
         </div>

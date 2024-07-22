@@ -21,15 +21,15 @@
     // constante qui définit les dossiers dans lesquels se situe le site pour pouvoir déterminer des chemins absolus à partir de localhost (on ne prends localhost). Ainsi nous écrivons tout les chemins (exp : src, href ) en absolu avec cette constante
 
     // define('RACINE_SITE', "/10MentionWeb_Back/02_php/site_cinema/");
-    define('RACINE_SITE', "http://10mentionweb_back.local/02_php/site_cinema/");
+    define('RACINE_SITE', "http://10mentionweb_back.test/02_php/site_cinema/");
 
 
     ################### Fonction pour debuger ###################
 
     function debug($var) {
-      echo '<pre class="border border-dark bg-light text-primary w-50 p-3">';
+      echo '<div class="mt-5"><pre class="border border-dark bg-light text-primary w-50 p-3 mt-5 pt-5">';
         var_dump($var);
-      echo '</pre>';
+      echo '</pre></div>';
     }
 
     ################### Fonction d'alert ###################
@@ -501,7 +501,7 @@
      return $result;
   }
 
-  function checkCatId(string $id_category) : mixed {
+  function checkCatId(int $id_category) : mixed {
 
     $cnx = connexionBDD();
     $sql = "SELECT * FROM categories WHERE id_category = :id_category";
