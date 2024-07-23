@@ -76,6 +76,21 @@
     unset($_SESSION['panier']);    
   }
 
+  // Supprimer un seul film
+
+  if (isset($_GET['id_film'])) {
+
+    $idFilmForDelete = htmlentities($_GET['id_film']);
+
+    foreach ($_SESSION['panier'] as $key => $film) {
+
+      if ($film['id_film'] == $idFilmForDelete) {
+        
+        unset($_SESSION['panier'][$key]);
+      }
+    }
+  }
+
   require_once "../inc/header.inc.php";
 ?>
 
@@ -129,18 +144,19 @@
               ?>
             </td>
             <td class="text-center border-top border-dark-subtle"><?= $moviePrice ?> €</td>
-            <td class="text-center border-top border-dark-subtle"><a href="?action=delete&id_film="><i class="bi bi-trash3"></i></a>
+            <td class="text-center border-top border-dark-subtle"><a href="?id_film=<?= $filmDansPanier['id_film']?>"><i class="bi bi-trash3"></i></a>
             </td>
           </tr>
         <?php                 
           }          
         ?>
         <tr class="border-top border-dark-subtle">
-          <th class="text-danger p-4 fs-3">Total : <?=  $totalPrice; ?> €</th>
+          <th class="text-danger p-4 fs-3">Total : <?= $totalPrice ?> €</th>
+          <th class="text-danger p-4 fs-3">Total : <?= calculMontantTotal($_SESSION['panier']) ?> €</th>
         </tr>
       </table>
       <form action="checkout.php" method="post">
-        <input type="hidden" name="total" value="">
+        <input type="hidden" name="total" value="<?= calculMontantTotal($_SESSION['panier']) ?>">
         <button type="submit" class="btn btn-danger mt-5 p-3" id="checkout-button">Payer</button>
       </form>
       <?php 

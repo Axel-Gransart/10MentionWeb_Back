@@ -193,6 +193,22 @@
 
   //createTableUsers();
 
+  function createTableOrders(){
+
+    $cnx = connexionBdd();
+    $sql = " CREATE TABLE IF NOT EXISTS orders (
+         id_order INT PRIMARY KEY AUTO_INCREMENT,
+         user_id INT NOT NULL,
+         price FLOAT,
+         created_at DATETIME,
+         is_paid ENUM('0', '1')
+    )";
+    $request = $cnx->exec($sql);
+
+  
+}
+
+//  createTableOrders();
 
   ################### Création des clés entrangères ###################
 
@@ -214,6 +230,9 @@
 
   // Création de la clé étrangère dans la table films
   //foreignKey('films', 'category_id', 'categories', 'id_category');
+
+  // foreignKey('orders', 'user_id', 'users', 'id_user');
+
 
 
    /*
@@ -771,7 +790,22 @@
 
 
 
+   /*
+                          ╔═════════════════════════════════════════════╗
+                          ║                                             ║
+                          ║                 PAGE PANIER                 ║
+                          ║                                             ║
+                          ╚═════════════════════════════════════════════╝ */
 
+
+  function calculMontantTotal(array $tab) {
+    $montantTotal = 0;
+
+    foreach ($tab as $key) {
+      $montantTotal += $key['price'] * $key['quantity'];
+    }
+    return $montantTotal;
+  }
 
 
 

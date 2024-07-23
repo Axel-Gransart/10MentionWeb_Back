@@ -13,7 +13,8 @@
   <!-- Google Fonts Dosis & Lora -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">  
+
   <!-- Personal style sheet -->
   <link rel="stylesheet" href="<?=RACINE_SITE?>assets/css/style.css"> 
   <!-- &lt;?= remplace &lt;=php echo  -->
@@ -94,7 +95,7 @@
               }
             ?>
             <li class="nav-item">
-              <a class="nav-link" href="<?=RACINE_SITE?>boutique/panier.php"><i class="bi bi-cart fs-2"></i></a>
+              <a class="nav-link" href="<?=RACINE_SITE?>boutique/panier.php"><i class="bi bi-cart fs-2"></i><sup class="badge rounded-pill text-bg-primary"><?= count($_SESSION['panier']) ?></sup></a>
             </li>                     
           </ul>
         </div>
