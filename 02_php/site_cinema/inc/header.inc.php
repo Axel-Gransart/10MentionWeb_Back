@@ -95,7 +95,7 @@
               }
             ?>
             <li class="nav-item">
-              <a class="nav-link" href="<?=RACINE_SITE?>boutique/panier.php"><i class="bi bi-cart fs-2"></i><sup class="badge rounded-pill text-bg-primary"><?= count($_SESSION['panier']) ?></sup></a>
+              <a class="nav-link" href="<?=RACINE_SITE?>boutique/panier.php"><i class="bi bi-cart fs-2"></i><?= !empty($_SESSION['panier']) && !empty($_SESSION['user']) ? "<sup class='badge rounded-pill text-bg-primary'>". count($_SESSION['panier'])."</sup>" : "" ?></a>
             </li>                     
           </ul>
         </div>
