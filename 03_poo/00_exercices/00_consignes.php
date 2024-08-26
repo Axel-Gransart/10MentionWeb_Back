@@ -20,3 +20,13 @@
     La classe doit également inclure un constructeur pour initialiser ces propriétés.
     Affichez les valeurs des propriétés "Fraise" et "rouge" de l'objet $fruit_1 en utilisant un echo.
 */
+
+
+//////////////////////////// Exercice 3  //////////////////////////////////////
+/*
+    Créez une classe Membre avec les propriétés privées pseudo et mdp.
+    La propriété pseudo doit être une chaîne de caractères et doit respecter les conditions suivantes :
+        - Contenir entre 1 et 15 caractères inclus.
+    La propriété mdp représente le mot de passe associé au membre.
+    afficher dans un echo les valeurs du pseudo et du mdp en respectant les contraintes définies.
+*/

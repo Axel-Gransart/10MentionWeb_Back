@@ -51,9 +51,16 @@
                                 <li><a class="dropdown-item" href="<?=RACINE_SITE?>/02_pratique/Panier_01.php">Panier</a></li>
                                 <li><a class="dropdown-item" href="<?=RACINE_SITE?>/02_pratique/Visibilite_02.php">Visibilité</a></li>
                                 <li><a class="dropdown-item" href="<?=RACINE_SITE?>/02_pratique/Humain_03.php">Humain</a></li>
-                                <li><a class="dropdown-item" href="<?=RACINE_SITE?>/02_pratique/JeuVideo_04.php"> Jeu video</a></li>
+                                <li><a class="dropdown-item" href="<?=RACINE_SITE?>/02_pratique/JeuVideo_04.php">Jeu video</a></li>
+                                <li><a class="dropdown-item" href="<?=RACINE_SITE?>/02_pratique/Maison_05.php">Maison</a></li>
+                                <li><a class="dropdown-item" href="<?=RACINE_SITE?>/02_pratique/Animal_06.php">Animal</a></li>
+                                <li><a class="dropdown-item" href="<?=RACINE_SITE?>/02_pratique/Personne_07.php">Personne</a></li>
+                                <li><a class="dropdown-item" href="<?=RACINE_SITE?>/02_pratique/Static_VS_const.php">Static VS const</a></li>
                                 <li><a class="dropdown-item" href="<?=RACINE_SITE?>/00_exercices/01_exercices.php">Exercices</a></li>
+                                <li><a class="dropdown-item" href="<?=RACINE_SITE?>/00_exercices/Media_V1.php">Média V1</a></li>
+                                <li><a class="dropdown-item" href="<?=RACINE_SITE?>/00_exercices/exo_voiture/affichage.php">Exercice voiture</a></li>
                             </ul>
+                            
                         </li>
                     </ul>
                 </div>

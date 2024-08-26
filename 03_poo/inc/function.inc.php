@@ -2,7 +2,7 @@
 <?php
 
 
-define('RACINE_SITE', "http://10mentionweb_back.test/03_poo/");
+define('RACINE_SITE', "http://10mentionweb_back.test/03_poo");
 
 function debug($var){
 

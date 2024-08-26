@@ -28,7 +28,7 @@ require_once "../inc/header.inc.php";
             </div>
             <div class="col-12">
                 <h2 class="text-center p-4 text-danger">Mais pourquoi choisir autre chose que public ?</h2>
-                <p>Les notions de public / private et protected ne sont pas nécessaires à 100% lorsque l'on travaille seul. Cependant, si notre code a vocation a être vu par d'autres personnes, il faudra bien définir les propriétés pour que les autres personnes qui voient le code comprennent ce qui peut être modifié et ce qui ne doit pas l'être. (exemple concret avec exemple empecher_negatif).</p>
+                <p>Les notions de public / private et protected ne sont pas nécessaires à 100% lorsque l'on travaille seul. Cependant, si notre code a vocation a être vu par d'autres personnes, il faudra bien définir les propriétés pour que les autres personnes qui voient le code comprennent ce qui peut être modifié et ce qui ne doit pas l'être.</p>
                 <p>Généralement on trouvera dans les codes destinés à la lecture par d'autres développeurs, toutes les propriétés en private et des getters pour y accéder. Pour modifier leur contenu, cela se fera par des setters. Cette façon de fonctionner servira de garde fous pour éviter les modifications intempestives du code. Le svariables ne pourront donc pas être modifiées en dehors de la classe dans laquelle elles se trouvent.</p>
                 <p> Les propriétés sont déclarées en générale en private, les mèthodes sont déclarées en public sauf dans des cas particulier.
                 </p>
