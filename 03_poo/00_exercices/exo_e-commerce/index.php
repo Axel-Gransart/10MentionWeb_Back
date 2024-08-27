@@ -29,14 +29,17 @@ require_once "Order.php";
   // Création des produits : Instanciation de la classe Product
 
   $produit1 = new ExoEcommerce\Product("Vélo", 250); // Je peux utiliser cette syntaxe si je ne veux pas mettre des use dans mon fichier
-  $produit2 = new Product("casque", 25); // Cette syntaxe si j'utilise le mot-clé use
-  $produit3 = new Product("gants", 30);
+  $produit2 = new Product("Casque", 25); // Cette syntaxe si j'utilise le mot-clé use
+  $produit3 = new Product("Gants", 30);
+  $produit4 = new Product("Cuissard", 45);
+  
 
   $order1 = new Order(1);
 
   $order1->addProduct($produit1);
   $order1->addProduct($produit2);
   $order1->addProduct($produit3);
+  $order1->addProduct($produit4);
   // affichage des informations de la commande
     // Id :
 
