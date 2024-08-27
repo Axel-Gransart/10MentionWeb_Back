@@ -10,7 +10,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 border rounded my-2 p-2">
       <h2 class="text-center p-4 text-danger">Propriétés et méthodes statiques</h2>
       <p>Les propriétés et méthodes statiques sont particulières, en effet ces dernières n'ont pas besoin d'être
         appliquées sur l'instanciation de notre classe, elles vont être directemet liées. Dès qu'on créera un nouvel
@@ -23,8 +23,8 @@
         deux points <em>::</em> et non plus l'appellation new suivie de la flèche <em>-></em>.</p>
       <p>Ces méthodes et propriétés statiques seront notamment utilisées lorsque l'on s'occupe de constantes, car elles
         sont elles mêmes statiques.</p>
+      </div>
       <p>Pour voir des exemples sur les propriétés et méthodes statiques, vous pouvez aller directement sur la page <span class="text-primary"><a class="fw-bold " href="<?=RACINE_SITE?>/02_pratique/Maison_05.php">Maison</a></span></p>
-    </div>
   </div>
 </div>
 

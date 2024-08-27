@@ -12,7 +12,8 @@ require_once "../inc/header.inc.php";
         <div class="row">
             <div class="col-12">
               <h2>GETTER et SETTER</h2>
-              <p></p>
+              <p>Une classe représentant un humain avec des propriétés privées pour le prénom et le nom</p>
+              <p> Les propriétés privées sont accédées et modifiées via des méthodes publiques appelées getter et setter</p>
 
 
 <?php

@@ -11,7 +11,13 @@ require_once "../inc/header.inc.php";
     <div class="container">
         <div class="row">
             <div class="col-12">
-
+              <p>En programmation, Une classe permet de regrouper des données (attributs / propriétés) et des comportements (méthodes).</p>
+              <p>Pour obtenir un objet, il faut demander au langage de le créer et de nous le donner pour qu’on puisse le manipuler. Pour faire ça, on précise au langage le nom de l’élément que l’on veut manipuler, c’est-à-dire la classe.</p>
+              <p>Une classe permet de produire plusieurs objets. Par convention, une classe sera nommée avec la première lettre en MAJUSCULE.</p>
+              <p>La classe représente un modèle de données qui définit la structure commune à tous les objets créés à partir de celle-ci. La classe constitue donc une sorte de moule à travers lequel plusieurs objets du même type et de même structure peuvent être créés.</p>
+              <p>Une classe représente une entité (le modèle qu'elle doit suivre) ; elle a ses services (= méthodes : ce qu'elle propose et ce qu'elle permet de faire) et elle a les attributs (= propriétés : ses spécificités).</p>
+              <p>Pour en savoir plus : <a target="_blank" href="https://blog.hubspot.fr/website/programmation-orientee-objet#:~:text=La%20programmation%20orient%C3%A9e%20objet%2C%20ou,des%20instances%20individuelles%20d">Programmation orientée Objet</a></p>
+              <p>Pour définir et créer une classe, on utilise le mot-clé class suivi du nom de la classe (avec une lettre majuscule au début et à chaque début d'un nouveau mot dans le nom de la classe).</p>
 
 
 <?php

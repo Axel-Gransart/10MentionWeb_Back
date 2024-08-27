@@ -35,7 +35,7 @@
                             <a class="nav-link text-success fw-bolder" href="<?=RACINE_SITE?>/01_cours/02_visibilite.php">La visibilité en POO</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-success fw-bolder" href="<?=RACINE_SITE?>/01_cours/03_statique.php">Visibilité statique</a>
+                            <a class="nav-link text-success fw-bolder" href="<?=RACINE_SITE?>/01_cours/03_statique.php">Propriétés et méthodes statiques</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-success fw-bolder" href="<?=RACINE_SITE?>/01_cours/04_heritage.php">L'héritage en POO</a>
@@ -55,10 +55,12 @@
                                 <li><a class="dropdown-item" href="<?=RACINE_SITE?>/02_pratique/Maison_05.php">Maison</a></li>
                                 <li><a class="dropdown-item" href="<?=RACINE_SITE?>/02_pratique/Animal_06.php">Animal</a></li>
                                 <li><a class="dropdown-item" href="<?=RACINE_SITE?>/02_pratique/Personne_07.php">Personne</a></li>
+                                <li><a class="dropdown-item" href="<?=RACINE_SITE?>/02_pratique/Namespace_08.php">Namespace</a></li>
                                 <li><a class="dropdown-item" href="<?=RACINE_SITE?>/02_pratique/Static_VS_const.php">Static VS const</a></li>
                                 <li><a class="dropdown-item" href="<?=RACINE_SITE?>/00_exercices/01_exercices.php">Exercices</a></li>
                                 <li><a class="dropdown-item" href="<?=RACINE_SITE?>/00_exercices/Media_V1.php">Média V1</a></li>
                                 <li><a class="dropdown-item" href="<?=RACINE_SITE?>/00_exercices/exo_voiture/affichage.php">Exercice voiture</a></li>
+                                <li><a class="dropdown-item" href="<?=RACINE_SITE?>/00_exercices/exo_e-commerce/index.php">Exercice E-commerce</a></li>
                             </ul>
                             
                         </li>

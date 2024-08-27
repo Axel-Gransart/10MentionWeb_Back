@@ -88,4 +88,7 @@ require_once "../inc/header.inc.php";
   echo $chien->getNom(); // Affiche le nom
 
   echo $chien->affichage();
+
+
+  require_once "../inc/footer.inc.php"
 ?>
