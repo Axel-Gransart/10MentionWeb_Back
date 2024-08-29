@@ -18,6 +18,7 @@ require_once "Order.php";
 
 
 
+
 <?php
 
   // Importation des namespace
@@ -53,7 +54,7 @@ require_once "Order.php";
     $toutLesProduits = $order1->getProduitList();
     $total = 0;
 
-    echo "<p><ul> La commande {$order1->getOrderId()} contient : ";
+    echo "<p> La commande {$order1->getOrderId()} contient : <ul>";
       foreach ($toutLesProduits as $value) {
         $total +=$value->getPrice();
         echo "<li>{$value->getName()} au prix de : {$value->getPrice()}€</li> ";

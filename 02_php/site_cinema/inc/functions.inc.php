@@ -452,7 +452,7 @@ function createTableOrderDetails(){
 
    ################### fonction pour modifier les éléments d'un utilisateur ###################
 
-   function modifyUSer(string $lastName, string $firstName, string $pseudo, string $email, string $phone, string $civility, string $birthday, string $address, string $zip, string $city, string $country) : mixed {
+   function modifyUSer(string $lastName, string $firstName, string $pseudo, string $email, string $phone, string $civility, string $birthday, string $address, string $zip, string $city, string $country) {
 
     $cnx = connexionBDD();
 

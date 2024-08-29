@@ -34,7 +34,7 @@
 
   if (!empty($_POST)) {
 
-    ################### On vérifie si un champs est vide ###################
+################## On vérifie si un champs est vide ##################
 
     $verif = true;
     

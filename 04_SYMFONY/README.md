@@ -16,7 +16,7 @@ https://symfony.com/
     Il permet de standardiser la manière dont les packages sont stockés au sein de notre projet et la façon dont ces packages sont utilisés. Ainsi, un projet qui utilise le même gestionnaire de dépendance suivra la même structure (dans le cas où plusieurs personnes travaillent sur le même projet, ils auront plus de facilité à comprendre la structure du projet et également tout ce dont dépend le projet pour fonctionner correctement).
 
 # Symfony Docker
-    est un squelette contenant tout le nécessaire pour installer et exécuter un projet Symfony. Dès lors que vous disposez d’un Docker Compose fonctionnel, il vous permet de créer de nouveaux projets Symfony sans rien installer en local.
+    C'est un squelette contenant tout le nécessaire pour installer et exécuter un projet Symfony. Dès lors que vous disposez d’un Docker Compose fonctionnel, il vous permet de créer de nouveaux projets Symfony sans rien installer en local.
 
 # A lancer sur le terminal dans le dossier my_project_directory 
     php -S 127.0.0.1:8000 -t public
@@ -27,8 +27,14 @@ https://symfony.com/
     symfony server:start
         et ouvrir l'URL se trouvant dans le cadre vert
 
+    symfony server:start -d
+        Permet de lancer les log et d'utiliser la même fenêtre du Terminal pour d'autres commandes
+
+
 # Via Laragon
     Sur le dossier public
 
-
+# pour stopper la lecture serveur vie le terminal dans le dossier my_project_directory 
+    symfony server:stop
+    
     
